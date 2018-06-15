@@ -1,0 +1,8 @@
+ps_project_homepage:
+    path:     /
+    defaults: { _controller: PSProjectBundle:Project:viewListProject }
+    
+ps_project_add_porject:  
+    path:     /{id}
+    defaults: { _controller: PSProjectBundle:Project:addProject }    
+    

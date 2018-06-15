@@ -2,12 +2,19 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Welcome!{% endblock %} | SourceGuard</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/bootstrap.4.0.0/css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/base/css.css') }}" type="text/css" media="all"/>
+		<link rel="stylesheet" href="{{ asset('assets/bootstrap.4.0.0/open-iconic-master/font/css/open-iconic-bootstrap.css') }}" type="text/css" media="all"/>
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+		<script src="{{ asset('assets/js/jquery.3.3.1.js') }}"></script>
+		<script src="{{ asset('assets/js/tether.1.2.4.js') }}"></script>
+		<script src="{{ asset('assets/bootstrap.4.0.0/js/bootstrap.min.js') }}"></script>
     </body>
 </html>
