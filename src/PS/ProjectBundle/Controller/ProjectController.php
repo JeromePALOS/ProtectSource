@@ -9,10 +9,12 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 use PS\ProjectBundle\Entity\Project;
 
+use PS\ProjectBundle\Form\ProjectType;
+use PS\ProjectBundle\Form\ProjectEditType;
+
 class ProjectController extends Controller
 {
-    public function viewListProjectAction()
-    {
+    public function viewListProjectAction(){
 		$em = $this->getDoctrine()->getManager();
 		
 		
@@ -37,18 +39,18 @@ class ProjectController extends Controller
 	
 	
 	
-	public function addProjectAction(Request $request)
-    {
+	public function addProjectAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
 		$project = new Project();
+
 		
 		$form = $this->get('form.factory')->create(ProjectType::class, $project);
 		
 		
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-			$em = $this->getDoctrine()->getManager();
 			
-			$projet->setUser($this->getUser());
+			$user = $em->getRepository('PSUserBundle:User')->findOneById($this->getUser()->getId());
+			$project->setUser($user);
 			
 			
 			$em->persist($project);
@@ -56,10 +58,10 @@ class ProjectController extends Controller
 
 			$request->getSession()->getFlashBag()->add('notice', 'Project created.');
 
-			return $this->redirectToRoute('ps_project_view_projet', array('id' => $project->getId() ));
+			return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $project->getKeyProject() ));
 		}
 
-        return $this->render('@PSProject\Project\viewListProject.html.twig', array(
+        return $this->render('@PSProject\Project\addProject.html.twig', array(
 			'form' => $form->createView(),
 		));
     }
@@ -67,7 +69,27 @@ class ProjectController extends Controller
 	
 	
 	
+	public function viewProjectAction($keyproject){
+		$em = $this->getDoctrine()->getManager();
+		
+		
+		
+		$project = $em->getRepository('PSProjectBundle:Project')->findOneByKeyProject($keyproject);
+		
+
+		
+		
+        return $this->render('@PSProject\Project\viewProject.html.twig', array(
+			'project' => $project,
+		));
+	}
 	
+
+	
+	//edit
+	
+	
+	//delete
 	
 	
 	

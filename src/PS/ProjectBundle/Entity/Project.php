@@ -22,7 +22,7 @@ class Project
     private $id;
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="PS\ProjectBundle\Entity\Project")
+	 * @ORM\ManyToOne(targetEntity="PS\UserBundle\Entity\User")
 	 * @ORM\JoinColumn(nullable=false, onDelete="CASCADE"))
 	 */
 	private $user;
@@ -46,9 +46,9 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="visibility", type="string", length=255)
      */
-    private $type;
+    private $visibility;
 
     /**
      * @var string
@@ -68,7 +68,17 @@ class Project
 	public function __construct(){
 		// Par défaut, la date du project est la date d'aujourd'hui
 		$this->creationDate = new \Datetime();
-		$this->keyProject = new \Datetime();
+		$this->keyProject = $this->random(10);
+	}
+	
+	function random($car) {
+		$string = "";
+		$chaine = "abcdefghijklmnpqrstuvwxy";
+		srand((double)microtime()*1000000);
+		for($i=0; $i<$car; $i++) {
+			$string .= $chaine[rand()%strlen($chaine)];
+		}
+		return $string;
 	}
 
     /**
@@ -129,29 +139,6 @@ class Project
         return $this->dateCreation;
     }
 
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Project
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
     /**
      * Set keyProject
@@ -208,7 +195,7 @@ class Project
      *
      * @return Project
      */
-    public function setUser(\PS\ProjectBundle\Entity\Project $user)
+    public function setUser(\PS\UserBundle\Entity\User $user)
     {
         $this->user = $user;
 
@@ -223,5 +210,29 @@ class Project
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set visibility
+     *
+     * @param string $visibility
+     *
+     * @return Project
+     */
+    public function setVisibility($visibility)
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * Get visibility
+     *
+     * @return string
+     */
+    public function getVisibility()
+    {
+        return $this->visibility;
     }
 }

@@ -22,7 +22,7 @@ class Project
     private $id;
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="PS\ProjectBundle\Entity\Project")
+	 * @ORM\ManyToOne(targetEntity="PS\UserBundle\Entity\User")
 	 * @ORM\JoinColumn(nullable=false, onDelete="CASCADE"))
 	 */
 	private $user;
@@ -46,9 +46,9 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="visibility", type="string", length=255)
      */
-    private $type;
+    private $visibility;
 
     /**
      * @var string
@@ -63,7 +63,23 @@ class Project
      * @ORM\Column(name="instruction", type="text")
      */
     private $instruction;
-
+	
+	
+	public function __construct(){
+		// Par défaut, la date du project est la date d'aujourd'hui
+		$this->creationDate = new \Datetime();
+		$this->keyProject = $this->random(10);
+	}
+	
+	function random($car) {
+		$string = "";
+		$chaine = "abcdefghijklmnpqrstuvwxy";
+		srand((double)microtime()*1000000);
+		for($i=0; $i<$car; $i++) {
+			$string .= $chaine[rand()%strlen($chaine)];
+		}
+		return $string;
+	}
 
     /**
      * Get id
@@ -194,5 +210,28 @@ class Project
     {
         return $this->instruction;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \PS\ProjectBundle\Entity\Project $user
+     *
+     * @return Project
+     */
+    public function setUser(\PS\ProjectBundle\Entity\Project $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \PS\ProjectBundle\Entity\Project
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}
