@@ -1,7 +1,3 @@
-ps_files:
-    resource: "@PSFilesBundle/Resources/config/routing.yml"
-    prefix:   /
-
 
 ps_project:
     resource: "@PSProjectBundle/Resources/config/routing.yml"

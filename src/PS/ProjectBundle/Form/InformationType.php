@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
+
+
 class InformationType extends AbstractType
 {
     /**
@@ -21,7 +23,9 @@ class InformationType extends AbstractType
     {
         $builder
 			->add('text',     			TextareaType::class)
+			->add('Files', 				FilesType::class)
 			->add('Add',     			SubmitType::class)
+			
 		;
 		
 		

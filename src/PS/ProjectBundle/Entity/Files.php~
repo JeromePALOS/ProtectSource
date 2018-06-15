@@ -1,17 +1,17 @@
 <?php
 // src/ESCPProjectBundle/Entity/SubmitFile
-namespace PS\FilesBundle\Entity;
+namespace PS\ProjectBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="files")
+ * @ORM\Table(name="filestest")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
-class SubmitFile
+class Files
 	{
 		/**
 		 * @ORM\Column(name="id", type="integer")
@@ -34,6 +34,12 @@ class SubmitFile
 		 * @ORM\Column(name="alt", type="string", length=255)
 		 */
 		private $alt;
+		
+  /**
+   * @ORM\OneToOne(targetEntity="ESCP\ProjectBundle\Entity\Information", inversedBy="files")
+   * @ORM\JoinColumn(nullable=false)
+   */
+		private $information;
 	  
 	  /**
 	   * @var UploadedFile  
@@ -311,6 +317,30 @@ class SubmitFile
 		{
 			return $this->extension;
 		}
+		    /**
+     * Set files
+     *
+     * @param \PS\ProjectBundle\Entity\Files $files
+     *
+     * @return Information
+     */
+    public function setFiles(\PS\ProjectBundle\Entity\Files $files)
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    /**
+     * Get files
+     *
+     * @return \PS\ProjectBundle\Entity\Files
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+	
 	}
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace PS\FilesBundle\Repository;
+namespace PS\ProjectBundle\Repository;
 
 /**
  * FilesRepository

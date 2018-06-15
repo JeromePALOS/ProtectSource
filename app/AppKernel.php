@@ -20,7 +20,6 @@ class AppKernel extends Kernel
 			new FOS\UserBundle\FOSUserBundle(),
             new PS\UserBundle\PSUserBundle(),
             new PS\ProjectBundle\PSProjectBundle(),
-            new PS\FilesBundle\PSFilesBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
