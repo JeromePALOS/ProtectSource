@@ -44,9 +44,7 @@ class Project
     private $dateCreation;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="visibility", type="string", length=255)
+     * @ORM\Column(name="visibility", type="boolean")
      */
     private $visibility;
 
@@ -212,10 +210,12 @@ class Project
         return $this->user;
     }
 
+
+
     /**
      * Set visibility
      *
-     * @param string $visibility
+     * @param boolean $visibility
      *
      * @return Project
      */
@@ -229,7 +229,7 @@ class Project
     /**
      * Get visibility
      *
-     * @return string
+     * @return boolean
      */
     public function getVisibility()
     {

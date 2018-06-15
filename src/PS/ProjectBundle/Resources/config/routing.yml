@@ -2,10 +2,30 @@ ps_project_homepage:
     path:     /
     defaults: { _controller: PSProjectBundle:Project:viewListProject }
     
-ps_project_add_porject:  
+ps_project_add_project:  
     path:     /addproject
     defaults: { _controller: PSProjectBundle:Project:addProject }    
     
 ps_project_view_project:  
-    path:     /{keyproject}
+    path:     /{keyproject}/{idproject}
     defaults: { _controller: PSProjectBundle:Project:viewProject }   
+    
+    
+    
+
+
+ps_project_delete_participant_ajax:
+    path:     /{keyproject}/{idproject}/deleteparticipant/{idparticipant}
+    defaults: { _controller: PSProjectBundle:Participant:deleteParticipant }    
+
+ps_project_add_participant:  
+    path:     /{keyproject}/{idproject}/addparticipant
+    defaults: { _controller: PSProjectBundle:Participant:addParticipant }  
+    
+    
+    
+    
+ps_project_add_information:  
+    path:     /{keyproject}/{idproject}/addinformation
+    defaults: { _controller: PSProjectBundle:Information:addInformation }   
+    

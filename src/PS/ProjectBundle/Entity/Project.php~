@@ -44,9 +44,7 @@ class Project
     private $dateCreation;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="visibility", type="string", length=255)
+     * @ORM\Column(name="visibility", type="boolean")
      */
     private $visibility;
 
@@ -139,29 +137,6 @@ class Project
         return $this->dateCreation;
     }
 
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Project
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
     /**
      * Set keyProject
@@ -218,7 +193,7 @@ class Project
      *
      * @return Project
      */
-    public function setUser(\PS\ProjectBundle\Entity\Project $user)
+    public function setUser(\PS\UserBundle\Entity\User $user)
     {
         $this->user = $user;
 
@@ -234,4 +209,6 @@ class Project
     {
         return $this->user;
     }
+
+
 }

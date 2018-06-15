@@ -1,0 +1,11 @@
+PS\FilesBundle\Entity\Files:
+    type: entity
+    table: null
+    repositoryClass: PS\FilesBundle\Repository\FilesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }

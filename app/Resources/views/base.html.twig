@@ -12,9 +12,12 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+		
+		
 		<script src="{{ asset('assets/js/jquery.3.3.1.js') }}"></script>
 		<script src="{{ asset('assets/js/tether.1.2.4.js') }}"></script>
 		<script src="{{ asset('assets/bootstrap.4.0.0/js/bootstrap.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+
     </body>
 </html>

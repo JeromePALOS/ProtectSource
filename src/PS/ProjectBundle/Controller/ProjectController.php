@@ -58,7 +58,7 @@ class ProjectController extends Controller
 
 			$request->getSession()->getFlashBag()->add('notice', 'Project created.');
 
-			return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $project->getKeyProject() ));
+			return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $project->getKeyProject(), 'idproject' => $project->getId() ));
 		}
 
         return $this->render('@PSProject\Project\addProject.html.twig', array(
@@ -69,18 +69,17 @@ class ProjectController extends Controller
 	
 	
 	
-	public function viewProjectAction($keyproject){
+	public function viewProjectAction($keyproject, $idproject){
 		$em = $this->getDoctrine()->getManager();
 		
+		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 		
-		
-		$project = $em->getRepository('PSProjectBundle:Project')->findOneByKeyProject($keyproject);
-		
-
+		$listParticipant = $em->getRepository('PSProjectBundle:Participant')->findByProject($project);
 		
 		
         return $this->render('@PSProject\Project\viewProject.html.twig', array(
 			'project' => $project,
+			'listParticipant' => $listParticipant,
 		));
 	}
 	
