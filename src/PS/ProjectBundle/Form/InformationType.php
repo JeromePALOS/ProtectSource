@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
@@ -22,8 +23,18 @@ class InformationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('text',     			TextareaType::class)
-			->add('Files', 				FilesType::class)
+		
+			->add('typeInformation',				ChoiceType::class, 
+				array(
+					'choices'  => array(
+						'text' => "text",
+						'document' => "document",
+					), 
+					'required' => true,
+				)
+			)
+			->add('text',     			TextareaType::class, array('required' => true))
+			->add('files', 				FilesType::class, array('required' => true))
 			->add('Add',     			SubmitType::class)
 			
 		;

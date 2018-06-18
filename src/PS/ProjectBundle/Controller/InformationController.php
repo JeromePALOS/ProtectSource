@@ -22,14 +22,32 @@ class InformationController extends Controller
 		$form = $this->get('form.factory')->create(InformationType::class, $information);
 		
 		
-		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+		if ($request->isMethod('POST')) {
+			if ($form->handleRequest($request)->isValid()){
+			
+				$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+				$information->setProject($project);
+				
+				$em->persist($information);
+				$em->flush();
 
-			$em->persist($information);
-			$em->flush();
+				$request->getSession()->getFlashBag()->add('notice', 'Information added');
 
-			$request->getSession()->getFlashBag()->add('notice', 'Information added');
+				return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $keyproject, 'idproject' => $idproject ));
+				
+			}else{
+				$validator = $this->get('validator');
+				$listErrors = $validator->validate($submit);
 
-			return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $keyproject, 'idproject' => $idproject ));
+				// Si $listErrors n'est pas vide, on affiche les erreurs
+				if(count($listErrors) > 0) {
+					$request->getSession()->getFlashBag()->add('notice', (string) $listErrors);
+				  // $listErrors est un objet, sa méthode __toString permet de lister joliement les erreurs
+				 
+				}
+			}
+				
+				
 		}
 
         return $this->render('@PSProject\Information\addInformation.html.twig', array(

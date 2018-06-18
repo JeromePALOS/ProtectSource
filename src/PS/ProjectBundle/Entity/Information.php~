@@ -46,9 +46,17 @@ class Information
     private $text;
 
     /**
-	* @ORM\OneToOne(targetEntity="ESCP\ProjectBundle\Entity\Files", mappedBy="information", cascade={"persist", "remove"})
+	* @ORM\OneToOne(targetEntity="PS\ProjectBundle\Entity\Files", mappedBy="information", cascade={"persist", "remove"})
 	*/
 	private $Files;
+	
+	/**
+	 * @ORM\ManyToOne(targetEntity="PS\ProjectBundle\Entity\Project")
+	 * @ORM\JoinColumn(nullable=false, onDelete="CASCADE"))
+	 */
+	private $project;
+	
+	
 	
 	
     /**
@@ -134,4 +142,28 @@ class Information
     }
 
 
+
+    /**
+     * Set files
+     *
+     * @param \PS\ProjectBundle\Entity\Files $files
+     *
+     * @return Information
+     */
+    public function setFiles(\PS\ProjectBundle\Entity\Files $files = null)
+    {
+        $this->Files = $files;
+
+        return $this;
+    }
+
+    /**
+     * Get files
+     *
+     * @return \PS\ProjectBundle\Entity\Files
+     */
+    public function getFiles()
+    {
+        return $this->Files;
+    }
 }

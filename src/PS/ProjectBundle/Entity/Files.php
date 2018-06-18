@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="filestest")
+ * @ORM\Table(name="files")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -35,11 +35,7 @@ class Files
 		 */
 		private $alt;
 		
-		/**
-		* @ORM\OneToOne(targetEntity="PS\ProjectBundle\Entity\Information", inversedBy="files")
-		* @ORM\JoinColumn(nullable=false)
-		*/
-		private $information;
+
 	  
 	  /**
 	   * @var UploadedFile  
@@ -163,7 +159,7 @@ class Files
 			}
 			// Si on avait un ancien fichier (attribut tempFilename non null), on le supprime
 			if (null !== $this->tempFilename) {
-			  $oldFile = $this->getUploadRootDir().'/['.$this->submitStep->getId().'_'.$this->submitStep->getUser().']'.$this->tempFilename;
+			  $oldFile = $this->getUploadRootDir().'/'.$this->tempFilename;
 			  if (file_exists($oldFile)) {
 				unlink($oldFile);
 			  }
@@ -171,7 +167,7 @@ class Files
 			// On déplace le fichier envoyé dans le répertoire de notre choix
 			$this->file->move(
 			  $this->getUploadRootDir(), // Le répertoire de destination
-			  '['.$this->submitStep->getId().'_'.$this->submitStep->getUser().']'.$this->name  // Le nom du fichier à créer, ici « id.name »
+			  $this->name  // Le nom du fichier à créer, ici « id.name »
 			);
 		  }
 		  
@@ -182,7 +178,7 @@ class Files
 		  public function preRemoveUpload()
 		  {
 			// On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-			$this->tempFilename = $this->getUploadRootDir().'/['.$this->submitStep->getId().'_'.$this->submitStep->getUser().']'.$this->name;
+			$this->tempFilename = $this->getUploadRootDir().'/'.$this->name;
 		  }
 		  
 		  
@@ -201,10 +197,10 @@ class Files
 		  
 		  public function getUploadDir()
 		  {
-			  $project = $this->submitStep->getStep()->getProject();
-			  $step = $this->submitStep->getStep();
+	
+
 			// On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
-			return 'uploads/submitsfile/'. $project->getId() .'_'. $project->getOwner() .'_'. $project->getName().'/'. $step->getId() .'_'. $step->getName() ;
+			return 'uploads/file/';
 		  }
 		  
 		  
@@ -217,7 +213,7 @@ class Files
 		  
 		  public function getWebPath()
 		  {
-			return $this->getUploadDir().'/['.$this->submitStep->getId().'_'.$this->submitStep->getUser().']'.$this->name;
+			return $this->getUploadDir().'/'.$this->name;
 		  }
 		  
 		  
@@ -299,7 +295,7 @@ class Files
 		 *
 		 * @param string $extension
 		 *
-		 * @return SubmitFile
+		 * @return Files
 		 */
 		public function setExtension($extension)
 		{
@@ -342,27 +338,5 @@ class Files
     }
 	
 	
-    /**
-     * Set information
-     *
-     * @param \PS\ProjectBundle\Entity\Information $information
-     *
-     * @return Files
-     */
-    public function setInformation(\PS\ProjectBundle\Entity\Information $information)
-    {
-        $this->information = $information;
 
-        return $this;
-    }
-
-    /**
-     * Get information
-     *
-     * @return \PS\ProjectBundle\Entity\Information
-     */
-    public function getInformation()
-    {
-        return $this->information;
-    }
 }
