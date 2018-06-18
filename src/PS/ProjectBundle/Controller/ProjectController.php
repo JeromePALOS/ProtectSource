@@ -75,10 +75,12 @@ class ProjectController extends Controller
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 		
 		$listParticipant = $em->getRepository('PSProjectBundle:Participant')->findByProject($project);
-		$listInformation = $em->getRepository('PSProjectBundle:Information')->findByProject($project);
+		$listInformationAccept = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => "Validate"));
+		$listInformationSubmit = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => "Wait"));
 		
         return $this->render('@PSProject\Project\viewProject.html.twig', array(
-			'listInformation' => $listInformation,
+			'listInformationAccept' => $listInformationAccept,
+			'listInformationSubmit' => $listInformationSubmit,
 			'project' => $project,
 			'listParticipant' => $listParticipant,
 		));

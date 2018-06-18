@@ -63,7 +63,7 @@ class Information
 	private $project;
 	
 	public function __construct(){
-
+		$this->setStatut("Wait");
 	}
 	
 	
