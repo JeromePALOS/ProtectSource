@@ -47,7 +47,7 @@ class InformationController extends Controller
 				}
 			}
 				
-				
+				 
 		}
 
         return $this->render('@PSProject\Information\addInformation.html.twig', array(
@@ -55,6 +55,27 @@ class InformationController extends Controller
 		));
     }
 	
+	
+	public function statutInformationAction(Request $request, $keyproject, $idproject, $idinformation, $statut){
+		$em = $this->getDoctrine()->getManager();
+		$information = $em->getRepository('PSProjectBundle:Information')->find($idinformation);
+		
+		if($statut != "Validate" and $statut != "Refuse"){
+			throw new AccessDeniedException('Error status.');
+		}
+		if($information === null){
+			throw new AccessDeniedException('Information unknow');
+		}
+		
+		
+		$information->setStatut($statut);
+		
+		$em->persist($information);
+		$em->flush();
+		
+		$request->getSession()->getFlashBag()->add('notice', 'Information update');
+		return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $keyproject, 'idproject' => $idproject ));
+	}
 
 	
 	

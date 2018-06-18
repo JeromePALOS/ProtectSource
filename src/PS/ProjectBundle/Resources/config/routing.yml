@@ -29,3 +29,20 @@ ps_project_add_information:
     path:     /{keyproject}/{idproject}/addinformation
     defaults: { _controller: PSProjectBundle:Information:addInformation }   
     
+    
+ps_project_statut_information:  
+    path:     /{keyproject}/{idproject}/{idinformation}/{statut}
+    defaults: { _controller: PSProjectBundle:Information:statutInformation }   
+    
+    
+    
+    
+    
+ps_project_add_article:  
+    path:     /{keyproject}/{idproject}/addarticle
+    defaults: { _controller: PSProjectBundle:Article:addArticle }   
+    
+    
+ps_project_edit_article:  
+    path:     /{keyproject}/{idproject}/{idarticle}
+    defaults: { _controller: PSProjectBundle:Article:editArticle }   

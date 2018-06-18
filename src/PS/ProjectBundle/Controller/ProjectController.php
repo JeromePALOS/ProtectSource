@@ -73,8 +73,11 @@ class ProjectController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+		$user = $em->getRepository('PSProjectBundle:Participant')->find($this->getUser()->getId());
+		
 		
 		$listParticipant = $em->getRepository('PSProjectBundle:Participant')->findByProject($project);
+		$listArticle = $em->getRepository('PSProjectBundle:Article')->findBy(array('project' => $project, 'user' => $user ));
 		$listInformationAccept = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => "Validate"));
 		$listInformationSubmit = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => "Wait"));
 		
@@ -83,6 +86,7 @@ class ProjectController extends Controller
 			'listInformationSubmit' => $listInformationSubmit,
 			'project' => $project,
 			'listParticipant' => $listParticipant,
+			'listArticle' => $listArticle,
 		));
 	}
 	
