@@ -35,7 +35,7 @@ class InformationType extends AbstractType
 			)
 			->add('text',     			TextareaType::class, array('required' => false))
 			->add('files', 				FilesType::class, array('required' => false, 'label' => false))
-			->add('Add',     			SubmitType::class)
+			->add('Send',     			SubmitType::class)
 			
 		;
 		
