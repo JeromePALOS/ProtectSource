@@ -10,7 +10,13 @@ ps_project_view_project:
     path:     /{keyproject}/{idproject}
     defaults: { _controller: PSProjectBundle:Project:viewProject }   
     
+ps_project_edit_project:  
+    path:     /{keyproject}/{idproject}/editproject
+    defaults: { _controller: PSProjectBundle:Project:editProject }       
     
+ps_project_delete_project:  
+    path:     /{keyproject}/{idproject}/deleteproject
+    defaults: { _controller: PSProjectBundle:Project:deleteProject }       
     
 
 
@@ -25,14 +31,7 @@ ps_project_add_participant:
     
     
     
-ps_project_add_information:  
-    path:     /{keyproject}/{idproject}/addinformation
-    defaults: { _controller: PSProjectBundle:Information:addInformation }   
-    
-    
-ps_project_statut_information:  
-    path:     /{keyproject}/{idproject}/{idinformation}/{statut}
-    defaults: { _controller: PSProjectBundle:Information:statutInformation }   
+
     
     
     
@@ -42,7 +41,25 @@ ps_project_add_article:
     path:     /{keyproject}/{idproject}/addarticle
     defaults: { _controller: PSProjectBundle:Article:addArticle }   
     
+ps_project_delete_article:  
+    path:     /{keyproject}/{idproject}/{idarticle}/deletearticle
+    defaults: { _controller: PSProjectBundle:Article:deleteArticle }   
     
 ps_project_edit_article:  
-    path:     /{keyproject}/{idproject}/{idarticle}
+    path:     /{keyproject}/{idproject}/{idarticle}/article
     defaults: { _controller: PSProjectBundle:Article:editArticle }   
+    
+    
+    
+    
+    
+    
+ps_project_add_information:  
+    path:     /{keyproject}/{idproject}/addinformation
+    defaults: { _controller: PSProjectBundle:Information:addInformation }   
+    
+    
+ps_project_statut_information:  
+    path:     /{keyproject}/{idproject}/{idinformation}/{statut}
+    defaults: { _controller: PSProjectBundle:Information:statutInformation }   
+

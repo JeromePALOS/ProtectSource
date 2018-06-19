@@ -73,11 +73,12 @@ class ProjectController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
-		$user = $em->getRepository('PSProjectBundle:Participant')->find($this->getUser()->getId());
+		$user = $em->getRepository('PSUserBundle:User')->find($this->getUser()->getId());
 		
 		
 		$listParticipant = $em->getRepository('PSProjectBundle:Participant')->findByProject($project);
 		$listArticle = $em->getRepository('PSProjectBundle:Article')->findBy(array('project' => $project, 'user' => $user ));
+		
 		$listInformationAccept = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => "Validate"));
 		$listInformationSubmit = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => "Wait"));
 		
@@ -96,6 +97,62 @@ class ProjectController extends Controller
 	
 	
 	//delete
+	
+		
+	public function editProjectAction($idproject, $keyproject, Request $request){
+		
+		$em = $this->getDoctrine()->getManager();
+
+		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+		
+		if (null === $project) {
+		  throw new NotFoundHttpException("Project unknow");
+		}
+
+
+		$form = $this->get('form.factory')->create(ProjectEditType::class, $project);
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('notice', 'Project update.');
+
+			return $this->redirectToRoute('ps_project_view_project', array('idproject' => $idproject, 'keyproject' => $project->getKeyProject()));
+		}
+
+		return $this->render('@PSProject\Project\editProject.html.twig', array(
+		  'project' => $project,
+		  'form'   	=> $form->createView(),
+		));
+	
+	}
+	
+	
+			
+	public function deleteProjectAction(Request $request, $idproject, $keyproject){
+		$em = $this->getDoctrine()->getManager();
+
+		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+	
+		$form = $this->get('form.factory')->create();
+
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+		  
+			$em->remove($project);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('notice', 'Project delete.');
+
+			return $this->redirectToRoute('ps_project_homepage');
+		}
+		
+		return $this->render('@PSProject\Project\deleteProject.html.twig', array(
+			'project' => $project,
+			'form'   => $form->createView(),
+		));
+	}
+
+	
+	
 	
 	
 	

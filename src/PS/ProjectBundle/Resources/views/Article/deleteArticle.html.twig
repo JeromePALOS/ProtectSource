@@ -1,0 +1,25 @@
+
+
+{# src/PS/ProjectBundle/Resources/views/Article/deleteArticle.html.twig #}
+
+{% extends "@PSProject\\layout.html.twig" %}
+
+{% block title %}
+	Delete Article
+{% endblock %}
+
+{% block body %}
+
+  <h2>Delete this article</h2>
+
+    
+  <form action="{{ path('ps_project_delete_article',{'idproject': article.project.id, 'keyproject': article.project.keyproject, 'idarticle': article.id }) }}" method="post">
+    <a href="{{ path('ps_project_edit_article', {'idproject': article.project.id, 'keyproject': article.project.keyproject, 'idarticle': article.id }) }}" class="btn btn-default">
+      < Back
+    </a>
+    <input type="submit" value="Delete" class="btn-blue" />
+    {# Ceci va générer le champ CSRF #}
+    {{ form_rest(form) }}
+  </form>
+
+{% endblock %}

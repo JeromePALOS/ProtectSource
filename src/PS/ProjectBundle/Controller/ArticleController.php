@@ -54,6 +54,7 @@ class ArticleController extends Controller
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 		$user = $em->getRepository('PSProjectBundle:Participant')->find($this->getUser()->getId());
 		
+		$listInformation = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => 'Validate'));
 		$article = $em->getRepository('PSProjectBundle:Article')->find($idarticle);
 		
 		$form = $this->get('form.factory')->create(ArticleEditType::class, $article);
@@ -70,15 +71,40 @@ class ArticleController extends Controller
 			'form'   	=> $form->createView(),
 			'article' 	=> $article,
 			'project' 	=> $project,
+			'listInformation' => $listInformation,
 		));
 	}
 	
 
 	
-	//edit
-	
-	
-	//delete
+
+	public function deleteArticleAction(Request $request, $keyproject, $idproject, $idarticle){
+		$em = $this->getDoctrine()->getManager();
+
+		$article = $em->getRepository('PSProjectBundle:Article')->find($idarticle);
+		
+
+		
+		if (null === $article) {
+			throw new NotFoundHttpException("Article unknow");
+		}
+		$form = $this->get('form.factory')->create();
+
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+		  
+			$em->remove($article);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('notice', 'Article delete.');
+
+			return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $article->getProject()->getKeyProject(), 'idproject' => $article->getProject()->getId() ));
+		}
+		
+		return $this->render('@PSProject\Article\deleteArticle.html.twig', array(
+			'article' => $article,
+			'form'   => $form->createView(),
+		));
+	}
 	
 	
 	
