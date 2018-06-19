@@ -28,13 +28,13 @@ class InformationType extends AbstractType
 				array(
 					'choices'  => array(
 						'text' => "text",
-						'document' => "document",
+						'file' => "file",
 					), 
 					'required' => true,
 				)
 			)
-			->add('text',     			TextareaType::class, array('required' => true))
-			->add('files', 				FilesType::class, array('required' => true))
+			->add('text',     			TextareaType::class, array('required' => false))
+			->add('files', 				FilesType::class, array('required' => false, 'label' => false))
 			->add('Add',     			SubmitType::class)
 			
 		;
