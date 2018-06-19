@@ -1,0 +1,147 @@
+@font-face {
+ font-family: "Garamont";
+ src: url("https://fonts.googleapis.com/css?family=EB+Garamond"); 
+    }
+
+.aside-participants {
+    background-color: #030642;
+    color: white;
+    font-family: trebuchet MS, sans-serif;
+    }
+.aside-participants h3{
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Garamont', serif;
+    }
+.aside-participants ul {
+    padding-left:0px; 
+    }
+.aside-participants li {
+    border-bottom: 1px solid white;
+    list-style-type: none;
+    margin-left: 0px;
+    }
+.aside-participants button {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    color: #c10000;
+    position: absolute;
+        right: 15px;
+    opacity:1;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+.aside-participants button:hover {
+    opacity: 0.9;
+    }
+.aside-participants a {
+    background-color: #c10000;
+    color:white;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.4rem;
+    opacity: 1;
+    transition: 0.4s;
+    }
+.aside-participants a:hover {
+    opacity: 0.9;
+    text-decoration: none;
+    color: white;
+    }
+
+.container-project {
+    font-family: 'Garamont', serif;
+    color: #303030;
+    }
+.container-project h1{
+    display: inline-block;
+    font-size: 3.5rem;
+    font-weight: 800;
+    }
+.container-project h1::first-letter,.container-project .lettrine{
+    color: #c10000;    
+    }
+.container-project h2, .container-project h3 {
+    display: table;
+    white-space: nowrap;
+    margin-bottom: 10px;}
+
+.container-project h2::after, .container-project h3::after {
+      border-bottom: 4px solid #030642;
+      content: '';
+      display: table-cell;
+      position: relative;
+      bottom: 0.2em;
+      width: 90%;
+      left: 5px;
+    }
+     
+.container-project .oi-cog {
+    font-size: 1.2rem;
+    color: #bfbfbf;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+.container-project .oi-cog:hover {
+    color: #303030;
+    }
+
+.project-article .article-list {
+    margin: 0px 0px 10px; 
+    }
+.article-card{
+    width: 100%;
+    height: 200px;
+    background-color: #f3f3f3;
+    line-height:200px;
+    text-align:center;
+    -moz-box-shadow: 4px 4px 12px #aaa; 
+    -webkit-box-shadow: 4px 4px 12px #aaa; 
+    box-shadow: 4px 4px 12px #555;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    }
+
+.article-card .oi-plus {
+    color: #bfbfbf;
+    vertical-align:middle;
+    font-size: 3rem;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    }
+.article-card:hover {
+    background-color: #f0f0f0;
+    vertical-align:middle;
+    }
+.article-card:hover span {
+    color: #303030;
+    }
+
+.add-information{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;    
+    }
+.add-information a {
+    font-family: trebuchet MS, sans-serif;
+    font-size: 1.5rem;
+    color: #bfbfbf;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    }
+.add-information .oi-plus {
+    color: #bfbfbf;
+    vertical-align:middle;
+    font-size: 2rem;
+    padding-bottom: 5px;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    }
+.add-information a:hover,.add-information a:hover .oi-plus{
+    color:#303030;
+    text-decoration: none;
+}
