@@ -15,12 +15,37 @@
 
 {% block body %}
 
-{% endblock %}
+	<div class='header container-fluid'>
+		<div class='row'>
+			<div class='col-sm-12 col-md-12'>
 
+			</div>
+		</div>
+		 <img src="{{ asset('assets/images/SourceGuard-logo.png') }}" width='50px' height='50px'/>
+		 <span class="white">Source<span class='red'> Guard</span></span>
+		 
+	</div>
+
+	{% block content %}
+
+	{% endblock %}
+	<div class='footer container-fluid'>
+		<div class='row'>
+			<div class="col-sx-12 col-md-4 offset-md-2">
+				<img class="logo-hover" src="{{ asset('assets/images/facebook-logo-button.png') }}" width='50px' height='50px'/>
+				<img class="logo-hover" src="{{ asset('assets/images/twitter.png') }}" width='50px' height='50px'/>
+				<img class="logo-hover" src="{{ asset('assets/images/closed-envelope-circle.png') }}" width='50px' height='50px'/>
+			</div>
+
+			<div class="col-xs-12 col-md-4 offset-md-2">
+				<a class='link' href="">Contact</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
 	
 {% block javascripts %}
 	{{ parent() }}
-
 	
 
 {% endblock %}
