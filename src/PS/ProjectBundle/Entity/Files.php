@@ -141,8 +141,6 @@ class Files
 			// Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
 			$this->alt = transliterator_transliterate('Any-Latin; Latin-ASCII; Lower()', $this->file->getClientOriginalName());
 			
-
-
 			$this->name = $this->alt;
 		  }
 		  
@@ -159,7 +157,7 @@ class Files
 			}
 			// Si on avait un ancien fichier (attribut tempFilename non null), on le supprime
 			if (null !== $this->tempFilename) {
-			  $oldFile = $this->getUploadRootDir().'/'.$this->tempFilename;
+			  $oldFile = $this->getUploadRootDir().'/['. $this->getId() .']'.$this->tempFilename;
 			  if (file_exists($oldFile)) {
 				unlink($oldFile);
 			  }
@@ -167,7 +165,7 @@ class Files
 			// On déplace le fichier envoyé dans le répertoire de notre choix
 			$this->file->move(
 			  $this->getUploadRootDir(), // Le répertoire de destination
-			  $this->name  // Le nom du fichier à créer, ici « id.name »
+			  '['. $this->getId() .']' . $this->name  // Le nom du fichier à créer, ici « id.name »
 			);
 		  }
 		  
@@ -178,7 +176,7 @@ class Files
 		  public function preRemoveUpload()
 		  {
 			// On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-			$this->tempFilename = $this->getUploadRootDir().'/'.$this->name;
+			$this->tempFilename = $this->getUploadRootDir().'/['. $this->getId() .']'.$this->name;
 		  }
 		  
 		  
@@ -213,7 +211,7 @@ class Files
 		  
 		  public function getWebPath()
 		  {
-			return $this->getUploadDir().'/'.$this->name;
+			return $this->getUploadDir().'/['. $this->getId() .']'.$this->name;
 		  }
 		  
 		  

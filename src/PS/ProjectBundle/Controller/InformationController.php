@@ -37,7 +37,7 @@ class InformationController extends Controller
 				
 			}else{
 				$validator = $this->get('validator');
-				$listErrors = $validator->validate($submit);
+				$listErrors = $validator->validate($information);
 
 				// Si $listErrors n'est pas vide, on affiche les erreurs
 				if(count($listErrors) > 0) {
