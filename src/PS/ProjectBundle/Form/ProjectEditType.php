@@ -24,7 +24,7 @@ class ProjectEditType extends AbstractType
 			->add('keyProject',		TextType::class, 
 				array(
 					'attr' => array(
-						'readonly' => true,
+						
 					),
 				)
 			)

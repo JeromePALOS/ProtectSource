@@ -54,7 +54,7 @@ class ArticleController extends Controller
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 		$user = $em->getRepository('PSProjectBundle:Participant')->find($this->getUser()->getId());
 		
-		$listInformation = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => 'Validate'));
+		$listInformation = $em->getRepository('PSProjectBundle:Information')->findBy(array('keyProject' => $keyproject, 'statut' => 'Validate'));
 		$article = $em->getRepository('PSProjectBundle:Article')->find($idarticle);
 		
 		$form = $this->get('form.factory')->create(ArticleEditType::class, $article);

@@ -79,10 +79,10 @@ class ProjectController extends Controller
 		$listParticipant = $em->getRepository('PSProjectBundle:Participant')->findByProject($project);
 		$listArticle = $em->getRepository('PSProjectBundle:Article')->findBy(array('project' => $project, 'user' => $user ));
 		
-		$listInformationAccept = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => "Validate"));
-		$listInformationSubmit = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => "Wait"));
-		
-        return $this->render('@PSProject\Project\viewProject.html.twig', array(
+		$listInformationAccept = $em->getRepository('PSProjectBundle:Information')->findBy(array('keyProject' => $project->getKeyProject(), 'statut' => "Validate"));
+		$listInformationSubmit = $em->getRepository('PSProjectBundle:Information')->findBy(array('keyProject' => $keyproject, 'statut' => "Wait"));
+       
+	   return $this->render('@PSProject\Project\viewProject.html.twig', array(
 			'listInformationAccept' => $listInformationAccept,
 			'listInformationSubmit' => $listInformationSubmit,
 			'project' => $project,
@@ -104,15 +104,25 @@ class ProjectController extends Controller
 		$em = $this->getDoctrine()->getManager();
 
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+		$listInformation = $em->getRepository('PSProjectBundle:Information')->findBy(array('keyProject' => $keyproject));
 		
 		if (null === $project) {
 		  throw new NotFoundHttpException("Project unknow");
 		}
 
-
+		
 		$form = $this->get('form.factory')->create(ProjectEditType::class, $project);
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+			
+			$data = $form->getData();
 
+			foreach($listInformation as $info){
+				$info->setKeyProject($data->getKeyProject());
+		
+			}
+			
+			
+			
 			$em->flush();
 			$request->getSession()->getFlashBag()->add('notice', 'Project update.');
 
@@ -120,8 +130,8 @@ class ProjectController extends Controller
 		}
 
 		return $this->render('@PSProject\Project\editProject.html.twig', array(
-		  'project' => $project,
-		  'form'   	=> $form->createView(),
+			'project' => $project,
+			'form'   	=> $form->createView(),
 		));
 	
 	}

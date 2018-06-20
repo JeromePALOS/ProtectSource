@@ -26,7 +26,7 @@ class InformationController extends Controller
 			if ($form->handleRequest($request)->isValid()){
 			
 				$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
-				$information->setProject($project);
+				$information->setKeyProject($keyproject);
 				
 				$em->persist($information);
 				$em->flush();
