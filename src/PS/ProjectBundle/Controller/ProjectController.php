@@ -17,9 +17,10 @@ class ProjectController extends Controller
     public function viewListProjectAction(){
 		$em = $this->getDoctrine()->getManager();
 		
+
 		
 		
-		$listproject = $em->getRepository('PSProjectBundle:Project')->findByUser($this->getUser()->getId());
+		$listProject = $em->getRepository('PSProjectBundle:Project')->findByUser($this->getUser()->getId());
 		
 		
 		
@@ -31,7 +32,7 @@ class ProjectController extends Controller
 		
 		
         return $this->render('@PSProject\Project\viewListProject.html.twig', array(
-			'listproject' => $listproject,
+			'listProject' => $listProject,
 		));
     }
 	
@@ -76,6 +77,16 @@ class ProjectController extends Controller
 		$user = $em->getRepository('PSUserBundle:User')->find($this->getUser()->getId());
 		
 		
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+
+		if($project->getUser()->getId() !== $this->getUser()->getId() and $participant === null ){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
+		
+
+		
+		
 		$listParticipant = $em->getRepository('PSProjectBundle:Participant')->findByProject($project);
 		$listArticle = $em->getRepository('PSProjectBundle:Article')->findBy(array('project' => $project, 'user' => $user ));
 		
@@ -105,10 +116,18 @@ class ProjectController extends Controller
 
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 		$listInformation = $em->getRepository('PSProjectBundle:Information')->findBy(array('keyProject' => $keyproject));
-		
+				
 		if (null === $project) {
 		  throw new NotFoundHttpException("Project unknow");
 		}
+		
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+
+		if($project->getUser()->getId() !== $this->getUser()->getId()){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
+
 
 		
 		$form = $this->get('form.factory')->create(ProjectEditType::class, $project);
@@ -143,6 +162,14 @@ class ProjectController extends Controller
 
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 	
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+
+		if($project->getUser()->getId() !== $this->getUser()->getId() and $participant === null ){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
+		
+		
 		$form = $this->get('form.factory')->create();
 
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {

@@ -60,6 +60,18 @@ class InformationController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$information = $em->getRepository('PSProjectBundle:Information')->find($idinformation);
 		
+		
+		
+		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+
+		if($project->getUser()->getId() !== $this->getUser()->getId() and $participant === null){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
+		
+		
+		
 		if($statut != "Validate" and $statut != "Refuse"){
 			throw new AccessDeniedException('Error status.');
 		}
