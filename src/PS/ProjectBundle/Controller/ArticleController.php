@@ -24,7 +24,7 @@ class ArticleController extends Controller
 		//permission
 		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
-		if($article->getUser()->getId() !== $this->getUser()->getId() and $participant !== null ){
+		if($project->getUser()->getId() !== $this->getUser()->getId() and ($participant === null or $project->getVisibility() == 0)){
 			throw new AccessDeniedException('You don\'t have permission.');
 		}
 		

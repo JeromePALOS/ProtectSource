@@ -17,22 +17,17 @@ class ProjectController extends Controller
     public function viewListProjectAction(){
 		$em = $this->getDoctrine()->getManager();
 		
-
-		
-		
 		$listProject = $em->getRepository('PSProjectBundle:Project')->findByUser($this->getUser()->getId());
 		
-		
-		
-		
-		
-		
-		
-		
-		
+		$listParticipation = $em->getRepository('PSProjectBundle:Participant')->findBy(array('user' => $this->getUser()->getId()));
+
+		//forach listParticipation as p
+		// p.project
+
 		
         return $this->render('@PSProject\Project\viewListProject.html.twig', array(
 			'listProject' => $listProject,
+			'listParticipation' => $listParticipation,
 		));
     }
 	
@@ -46,7 +41,6 @@ class ProjectController extends Controller
 
 		
 		$form = $this->get('form.factory')->create(ProjectType::class, $project);
-		
 		
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 			
@@ -80,7 +74,7 @@ class ProjectController extends Controller
 		//permission
 		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
-		if($project->getUser()->getId() !== $this->getUser()->getId() and $participant === null ){
+		if($project->getUser()->getId() !== $this->getUser()->getId() and ($participant === null or $project->getVisibility() == 0)){
 			throw new AccessDeniedException('You don\'t have permission.');
 		}
 		
@@ -165,7 +159,7 @@ class ProjectController extends Controller
 		//permission
 		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
-		if($project->getUser()->getId() !== $this->getUser()->getId() and $participant === null ){
+		if($project->getUser()->getId() !== $this->getUser()->getId()){
 			throw new AccessDeniedException('You don\'t have permission.');
 		}
 		
