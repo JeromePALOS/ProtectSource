@@ -64,9 +64,9 @@ class InformationController extends Controller
 		
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 		//permission
-		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+		$participation = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
-		if($project->getUser()->getId() !== $this->getUser()->getId() and ($participant === null or $project->getVisibility() == 0)){
+		if($project->getUser()->getId() !== $this->getUser()->getId() and ($participation === null or $project->getVisibility() == 0)){
 			throw new AccessDeniedException('You don\'t have permission.');
 		}
 		
@@ -79,6 +79,11 @@ class InformationController extends Controller
 			throw new AccessDeniedException('Information unknow');
 		}
 		
+        if(($participation->getPermissionParticipantAdd() == 0 and $statut == "Validate") or ($participation->getPermissionParticipantDelete() == 0 and $statut == "Refuse")){
+            throw new AccessDeniedException('You don\'t have permission.');
+        }
+        
+        
 		
 		$information->setStatut($statut);
 		

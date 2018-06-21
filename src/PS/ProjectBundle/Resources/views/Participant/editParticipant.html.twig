@@ -1,0 +1,12 @@
+{% extends "@PSProject\\layout.html.twig" %}
+
+{% block title %}
+	Edit Participant
+{% endblock %}
+
+{% block body %}
+
+		<h3>Participant : {{ participant.user.username }}</h3>
+		<p> {{ include("@PSProject/Participant/formParticipant.html.twig") }}</p>
+
+{% endblock %}

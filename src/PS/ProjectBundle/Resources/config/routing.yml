@@ -28,7 +28,13 @@ ps_project_delete_project:
     path:     /{keyproject}/{idproject}/deleteproject
     defaults: { _controller: PSProjectBundle:Project:deleteProject }       
     
-
+    
+    
+    
+    
+ps_project_view_participant:  
+    path:     /{keyproject}/{idproject}/viewparticipant
+    defaults: { _controller: PSProjectBundle:Participant:viewParticipant }      
 
 ps_project_delete_participant_ajax:
     path:     /{keyproject}/{idproject}/deleteparticipant/{idparticipant}
@@ -38,6 +44,9 @@ ps_project_add_participant:
     path:     /{keyproject}/{idproject}/addparticipant
     defaults: { _controller: PSProjectBundle:Participant:addParticipant }  
     
+ps_project_edit_participant:  
+    path:     /{keyproject}/{idproject}/{idparticipant}/editparticipant
+    defaults: { _controller: PSProjectBundle:Participant:editParticipant }      
     
     
     

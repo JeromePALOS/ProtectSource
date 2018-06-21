@@ -33,6 +33,61 @@ class Participant
 	 */
 	private $project;
 	
+    
+    //viewProject
+	/**
+     * @ORM\Column(name="permissionProjectView", type="boolean")
+     */
+    private $permissionProjectView; 
+    
+    //permission parametre project
+	/**
+     * @ORM\Column(name="permissionProjectParameter", type="boolean")
+     */
+    private $permissionProjectParameter;
+	
+    //add participant
+	/**
+     * @ORM\Column(name="permissionParticipantAdd", type="boolean")
+     */
+    private $permissionParticipantAdd;
+    
+    //delete participant
+    /**
+     * @ORM\Column(name="permissionParticipantDelete", type="boolean")
+     */
+    private $permissionParticipantDelete;
+    
+    //change permission 
+    /**
+     * @ORM\Column(name="permissionParticipantPermission", type="boolean")
+     */
+    private $permissionParticipantPermission;
+    
+    //create, edit, delete
+	/**
+     * @ORM\Column(name="permissionArticle", type="boolean")
+     */
+    private $permissionArticle;
+	
+    //
+	/**
+     * @ORM\Column(name="permissionInformationAdd", type="boolean")
+     */
+    private $permissionInformationAdd;
+    
+    //refuse information
+    /**
+     * @ORM\Column(name="permissionInformationDelete", type="boolean")
+     */
+    private $permissionInformationDelete;
+    
+   public function __construct(){
+
+	}
+	
+	
+	
     /**
      * Get id
      *
@@ -89,5 +144,269 @@ class Participant
     public function getProject()
     {
         return $this->project;
+    }
+
+    /**
+     * Set permissionProject
+     *
+     * @param boolean $permissionProject
+     *
+     * @return Participant
+     */
+    public function setPermissionProject($permissionProject)
+    {
+        $this->permissionProject = $permissionProject;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionProject
+     *
+     * @return boolean
+     */
+    public function getPermissionProject()
+    {
+        return $this->permissionProject;
+    }
+
+    /**
+     * Set permissionParticipant
+     *
+     * @param boolean $permissionParticipant
+     *
+     * @return Participant
+     */
+    public function setPermissionParticipant($permissionParticipant)
+    {
+        $this->permissionParticipant = $permissionParticipant;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionParticipant
+     *
+     * @return boolean
+     */
+    public function getPermissionParticipant()
+    {
+        return $this->permissionParticipant;
+    }
+
+    /**
+     * Set permissionArticle
+     *
+     * @param boolean $permissionArticle
+     *
+     * @return Participant
+     */
+    public function setPermissionArticle($permissionArticle)
+    {
+        $this->permissionArticle = $permissionArticle;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionArticle
+     *
+     * @return boolean
+     */
+    public function getPermissionArticle()
+    {
+        return $this->permissionArticle;
+    }
+
+    /**
+     * Set permissionInformation
+     *
+     * @param boolean $permissionInformation
+     *
+     * @return Participant
+     */
+    public function setPermissionInformation($permissionInformation)
+    {
+        $this->permissionInformation = $permissionInformation;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionInformation
+     *
+     * @return boolean
+     */
+    public function getPermissionInformation()
+    {
+        return $this->permissionInformation;
+    }
+
+    /**
+     * Set permissionProjectView
+     *
+     * @param boolean $permissionProjectView
+     *
+     * @return Participant
+     */
+    public function setPermissionProjectView($permissionProjectView)
+    {
+        $this->permissionProjectView = $permissionProjectView;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionProjectView
+     *
+     * @return boolean
+     */
+    public function getPermissionProjectView()
+    {
+        return $this->permissionProjectView;
+    }
+
+    /**
+     * Set permissionProjectParameter
+     *
+     * @param boolean $permissionProjectParameter
+     *
+     * @return Participant
+     */
+    public function setPermissionProjectParameter($permissionProjectParameter)
+    {
+        $this->permissionProjectParameter = $permissionProjectParameter;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionProjectParameter
+     *
+     * @return boolean
+     */
+    public function getPermissionProjectParameter()
+    {
+        return $this->permissionProjectParameter;
+    }
+
+    /**
+     * Set permissionParticipantAdd
+     *
+     * @param boolean $permissionParticipantAdd
+     *
+     * @return Participant
+     */
+    public function setPermissionParticipantAdd($permissionParticipantAdd)
+    {
+        $this->permissionParticipantAdd = $permissionParticipantAdd;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionParticipantAdd
+     *
+     * @return boolean
+     */
+    public function getPermissionParticipantAdd()
+    {
+        return $this->permissionParticipantAdd;
+    }
+
+    /**
+     * Set permissionParticipantDelete
+     *
+     * @param boolean $permissionParticipantDelete
+     *
+     * @return Participant
+     */
+    public function setPermissionParticipantDelete($permissionParticipantDelete)
+    {
+        $this->permissionParticipantDelete = $permissionParticipantDelete;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionParticipantDelete
+     *
+     * @return boolean
+     */
+    public function getPermissionParticipantDelete()
+    {
+        return $this->permissionParticipantDelete;
+    }
+
+    /**
+     * Set permissionParticipantPermission
+     *
+     * @param boolean $permissionParticipantPermission
+     *
+     * @return Participant
+     */
+    public function setPermissionParticipantPermission($permissionParticipantPermission)
+    {
+        $this->permissionParticipantPermission = $permissionParticipantPermission;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionParticipantPermission
+     *
+     * @return boolean
+     */
+    public function getPermissionParticipantPermission()
+    {
+        return $this->permissionParticipantPermission;
+    }
+
+    /**
+     * Set permissionInformationAdd
+     *
+     * @param boolean $permissionInformationAdd
+     *
+     * @return Participant
+     */
+    public function setPermissionInformationAdd($permissionInformationAdd)
+    {
+        $this->permissionInformationAdd = $permissionInformationAdd;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionInformationAdd
+     *
+     * @return boolean
+     */
+    public function getPermissionInformationAdd()
+    {
+        return $this->permissionInformationAdd;
+    }
+
+    /**
+     * Set permissionInformationDelete
+     *
+     * @param boolean $permissionInformationDelete
+     *
+     * @return Participant
+     */
+    public function setPermissionInformationDelete($permissionInformationDelete)
+    {
+        $this->permissionInformationDelete = $permissionInformationDelete;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionInformationDelete
+     *
+     * @return boolean
+     */
+    public function getPermissionInformationDelete()
+    {
+        return $this->permissionInformationDelete;
     }
 }

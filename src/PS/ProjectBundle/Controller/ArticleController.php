@@ -22,9 +22,9 @@ class ArticleController extends Controller
 		
 		$project = $em->getRepository('PSProjectBundle:Project')->find($idproject);
 		//permission
-		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+		$participation = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
-		if($project->getUser()->getId() !== $this->getUser()->getId() and ($participant === null or $project->getVisibility() == 0)){
+		if($project->getUser()->getId() !== $this->getUser()->getId()  and ($participation === null or $project->getVisibility() == 0 or $participation->getPermissionArticle() == 0)){
 			throw new AccessDeniedException('You don\'t have permission.');
 		}
 		
@@ -66,9 +66,9 @@ class ArticleController extends Controller
 		
 		
 		//permission
-		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+		$participation = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
-		if($article->getUser()->getId() !== $this->getUser()->getId() ){
+		if($article->getUser()->getId() !== $this->getUser()->getId() and ($participation === null or $project->getVisibility() == 0 or $participation->getPermissionArticle() == 0)){
 			throw new AccessDeniedException('You don\'t have permission.');
 		}
 		
@@ -102,7 +102,7 @@ class ArticleController extends Controller
 		
 		
 		//permission
-		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+		$participation = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
 		if($article->getUser()->getId() !== $this->getUser()->getId() ){
 			throw new AccessDeniedException('You don\'t have permission.');
