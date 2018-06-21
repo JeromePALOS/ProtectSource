@@ -24,7 +24,7 @@ class ParticipantEditType extends AbstractType
 
 			->add('Save',      						    SubmitType::class)
             ->remove('Add')
-            ->remove('User');
+            ->remove('UserX');
 	}
     
 	public function getParent()
