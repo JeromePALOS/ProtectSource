@@ -21,11 +21,10 @@
     list-style-type: none;
     margin-left: 0px;
     }
-.aside-participants button {
+.aside-participants li>a {
     background-color: transparent;
     border: none;
     padding: 0px;
-    color: #c10000;
     position: absolute;
         right: 15px;
     opacity:1;
@@ -33,10 +32,12 @@
     transition-duration: 0.4s;
     cursor: pointer;
     }
-.aside-participants button:hover {
+.aside-participants li>a  span {
+    color: #c10000;} 
+.aside-participants li>a:hover {
     opacity: 0.9;
     }
-.aside-participants a {
+.aside-participants>a {
     background-color: #c10000;
     color:white;
     display: block;
@@ -45,8 +46,9 @@
     font-size: 1.4rem;
     opacity: 1;
     transition: 0.4s;
+    margin-bottom: 20px;
     }
-.aside-participants a:hover {
+.aside-participants>a:hover {
     opacity: 0.9;
     text-decoration: none;
     color: white;
@@ -67,8 +69,9 @@
 .container-project h2, .container-project h3 {
     display: table;
     white-space: nowrap;
-    margin-bottom: 10px;}
-
+    margin-bottom: 20px;}
+.container-project h2{
+    margin-top: 20px;}
 .container-project h2::after, .container-project h3::after {
       border-bottom: 4px solid #030642;
       content: '';
@@ -91,36 +94,62 @@
     }
 
 .project-article .article-list {
-    margin: 0px 0px 10px; 
+    margin: 0px 0px 20px; 
     }
-.article-card{
-    width: 100%;
-    height: 200px;
-    background-color: #f3f3f3;
-    line-height:200px;
-    text-align:center;
+.article-list>a{    
+    margin-bottom: 20px;
+    text-decoration: none;}
+.article-list>a>div{        
     -moz-box-shadow: 4px 4px 12px #aaa; 
     -webkit-box-shadow: 4px 4px 12px #aaa; 
-    box-shadow: 4px 4px 12px #555;
+    box-shadow: 4px 4px 12px #555;  }
+.article-name {
+    line-height: normal;
+    text-align: left;
+    background-color: #f3f3f3;
+    height: 10%;} 
+.article-name p{
+    color:#bfbfbf;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-family: Trebuchet MS, sans-serif;}
+.article-list img{
+    width: 100%;
+    height: auto;}    
+.article-list .add-article>div {
+    line-height: 200px;
+    width: 100%;
+    height: 200px;
+    font-family: Trebuchet MS, sans-serif;
+    background-color: #f3f3f3;
+    font-size: 1.2rem;
+    text-align:center;     
     transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    }
+    transition-duration: 0.4s;}
 
-.article-card .oi-plus {
+.article-list>a .oi-plus {
     color: #bfbfbf;
     vertical-align:middle;
     font-size: 3rem;
     transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     }
-.article-card:hover {
-    background-color: #f0f0f0;
-    vertical-align:middle;
-    }
-.article-card:hover span {
+.article-list>a:hover{
+    text-decoration: none;}
+.article-list>a:hover p {
+    color: #303030;}
+.article-list>a:hover span {
     color: #303030;
     }
+.article-card img {
+    height: 200px;
+    width: auto;}
 
+
+.project-informations{
+    margin-bottom: 30px;}
+.submitted-informations{
+    margin-bottom: 20px;}
 .add-information{
     width: 100%;
     height: 50px;
@@ -143,12 +172,63 @@
     }
 .add-information a:hover,.add-information a:hover .oi-plus{
     color:#303030;
+    text-decoration: none;}
+
+.informations {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    background-color: #f3f3f3;
+    margin-bottom: 10px;
+    }
+.informations .content-info{    
+    flex-grow: 2;
+    margin-bottom: 0px;
+    padding: 0px 5px 0px 5px;
+    font-family: trebuchet MS;
+    color: #303030;
+    }
+.informations .validate, .informations .refuse, .informations .download{
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    flex-shrink: 0;
+    border-left: 1px solid;
+    }
+.informations .download, .informations .download-file{
+    color: #030642;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.informations .download-file:hover{
     text-decoration: none;
 }
 
-/***************
-Alexander
-***************/
+.informations .download-file:hover .download{
+    color: white;
+    background-color: #030642;
+    }
+.informations .validate{
+    color: green;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    }
+.informations .validate:hover{
+    color: white;
+    background-color: green;
+    }
+.informations .refuse{
+    color: #c10000;
+    transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    }
+.informations .refuse:hover{
+    color: white;
+    background-color: #c10000;
+    }
+
+
 .header{
 	width: 100%;
 	height: 100px;
@@ -215,5 +295,6 @@ Alexander
     opacity: 0.8;
     cursor: pointer;
 }
+
 
 
