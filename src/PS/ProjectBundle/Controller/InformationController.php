@@ -26,7 +26,7 @@ class InformationController extends Controller
 			if ($form->handleRequest($request)->isValid()){
 			
 				$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
-				$information->setProject($project);
+				$information->setKeyProject($keyproject);
 				
 				$em->persist($information);
 				$em->flush();
@@ -37,7 +37,7 @@ class InformationController extends Controller
 				
 			}else{
 				$validator = $this->get('validator');
-				$listErrors = $validator->validate($submit);
+				$listErrors = $validator->validate($information);
 
 				// Si $listErrors n'est pas vide, on affiche les erreurs
 				if(count($listErrors) > 0) {
@@ -59,6 +59,18 @@ class InformationController extends Controller
 	public function statutInformationAction(Request $request, $keyproject, $idproject, $idinformation, $statut){
 		$em = $this->getDoctrine()->getManager();
 		$information = $em->getRepository('PSProjectBundle:Information')->find($idinformation);
+		
+		
+		
+		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+
+		if($project->getUser()->getId() !== $this->getUser()->getId() and ($participant === null or $project->getVisibility() == 0)){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
+		
+		
 		
 		if($statut != "Validate" and $statut != "Refuse"){
 			throw new AccessDeniedException('Error status.');

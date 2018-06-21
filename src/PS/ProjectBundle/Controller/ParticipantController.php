@@ -25,7 +25,15 @@ class ParticipantController extends Controller
 	public function addParticipantAction(Request $request, $keyproject, $idproject){
 		$em = $this->getDoctrine()->getManager();
 		$participant = new Participant();
+		
+		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+		
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
+		if($project->getUser()->getId() !== $this->getUser()->getId()){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
 		
 		$formBuilder = $this->createFormBuilder();
 
@@ -39,7 +47,7 @@ class ParticipantController extends Controller
 		
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 			
-			$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+
 			$participant->setProject($project);
 			
 			$data = $form->getData();
@@ -73,18 +81,29 @@ class ParticipantController extends Controller
 	
 	public function deleteParticipantAction(Request $request, $idparticipant, $keyproject, $idproject){
 
-			$em = $this->getDoctrine()->getManager();
+		$em = $this->getDoctrine()->getManager();
 
-			$participant = $em->getRepository('PSProjectBundle:Participant')->find($idparticipant);
-			
+		$participant = $em->getRepository('PSProjectBundle:Participant')->find($idparticipant);
+		
+		
+		
+		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
-			$em->remove($participant);
-			$em->flush();
-
-			$request->getSession()->getFlashBag()->add('notice', "Participant delete");
-				
-			
-			return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $keyproject, 'idproject' => $idproject ));
+		if($project->getUser()->getId() !== $this->getUser()->getId()){
+			throw new AccessDeniedException('You don\'t have permission.');
 		}
+		
+		
+		
+		$em->remove($participant);
+		$em->flush();
+
+		$request->getSession()->getFlashBag()->add('notice', "Participant delete");
+			
+		
+		return $this->redirectToRoute('ps_project_view_project', array('keyproject' => $keyproject, 'idproject' => $idproject ));
+	}
 	
 }

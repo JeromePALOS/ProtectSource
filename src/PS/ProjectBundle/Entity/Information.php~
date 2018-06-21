@@ -3,12 +3,17 @@
 namespace PS\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Information
  *
  * @ORM\Table(name="information")
  * @ORM\Entity(repositoryClass="PS\ProjectBundle\Repository\InformationRepository")
+ * @ORM\HasLifecycleCallbacks()
+ 
  */
 class Information
 {
@@ -46,17 +51,21 @@ class Information
     private $text;
 
     /**
-	* @ORM\OneToOne(targetEntity="PS\ProjectBundle\Entity\Files", mappedBy="information", cascade={"persist", "remove"})
+	* @ORM\OneToOne(targetEntity="PS\ProjectBundle\Entity\Files", cascade={"persist", "remove"})
+	* @Assert\Valid()
 	*/
-	private $Files;
+	private $files;
+	    /**
+     * @var string
+     *
+     * @ORM\Column(name="keyProject", type="text")
+     */
+    private $keyProject;
+
 	
-	/**
-	 * @ORM\ManyToOne(targetEntity="PS\ProjectBundle\Entity\Project")
-	 * @ORM\JoinColumn(nullable=false, onDelete="CASCADE"))
-	 */
-	private $project;
-	
-	
+	public function __construct(){
+		$this->setStatut("Wait");
+	}
 	
 	
     /**
@@ -152,7 +161,7 @@ class Information
      */
     public function setFiles(\PS\ProjectBundle\Entity\Files $files = null)
     {
-        $this->Files = $files;
+        $this->files = $files;
 
         return $this;
     }
@@ -164,6 +173,7 @@ class Information
      */
     public function getFiles()
     {
-        return $this->Files;
+        return $this->files;
     }
+
 }

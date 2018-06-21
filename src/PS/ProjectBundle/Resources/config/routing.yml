@@ -2,6 +2,16 @@ ps_project_homepage:
     path:     /
     defaults: { _controller: PSProjectBundle:Project:viewListProject }
     
+
+ps_project_contact:  
+    path:     /contact
+    defaults: { _controller: PSProjectBundle:Contact:viewContact }   
+
+
+
+
+    
+    
 ps_project_add_project:  
     path:     /addproject
     defaults: { _controller: PSProjectBundle:Project:addProject }    
@@ -63,3 +73,4 @@ ps_project_statut_information:
     path:     /{keyproject}/{idproject}/{idinformation}/{statut}
     defaults: { _controller: PSProjectBundle:Information:statutInformation }   
 
+    

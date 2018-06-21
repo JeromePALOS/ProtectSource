@@ -55,12 +55,13 @@ class Information
 	* @Assert\Valid()
 	*/
 	private $files;
-	
-	/**
-	 * @ORM\ManyToOne(targetEntity="PS\ProjectBundle\Entity\Project")
-	 * @ORM\JoinColumn(nullable=false, onDelete="CASCADE"))
-	 */
-	private $project;
+	    /**
+     * @var string
+     *
+     * @ORM\Column(name="keyProject", type="text")
+     */
+    private $keyProject;
+
 	
 	public function __construct(){
 		$this->setStatut("Wait");
@@ -175,27 +176,28 @@ class Information
         return $this->files;
     }
 
+
     /**
-     * Set project
+     * Set keyProject
      *
-     * @param \PS\ProjectBundle\Entity\Project $project
+     * @param string $keyProject
      *
      * @return Information
      */
-    public function setProject(\PS\ProjectBundle\Entity\Project $project)
+    public function setKeyProject($keyProject)
     {
-        $this->project = $project;
+        $this->keyProject = $keyProject;
 
         return $this;
     }
 
     /**
-     * Get project
+     * Get keyProject
      *
-     * @return \PS\ProjectBundle\Entity\Project
+     * @return string
      */
-    public function getProject()
+    public function getKeyProject()
     {
-        return $this->project;
+        return $this->keyProject;
     }
 }

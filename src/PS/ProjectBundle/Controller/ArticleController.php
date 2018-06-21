@@ -19,7 +19,14 @@ class ArticleController extends Controller
 	public function addArticleAction(Request $request, $idproject){
 		$em = $this->getDoctrine()->getManager();
 		$article = new Article();
+		
+		$project = $em->getRepository('PSProjectBundle:Project')->find($idproject);
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
+		if($project->getUser()->getId() !== $this->getUser()->getId() and ($participant === null or $project->getVisibility() == 0)){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
 		
 		$form = $this->get('form.factory')->create(ArticleType::class, $article);
 		
@@ -27,7 +34,7 @@ class ArticleController extends Controller
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 			
 			$user = $em->getRepository('PSUserBundle:User')->findOneById($this->getUser()->getId());
-			$project = $em->getRepository('PSProjectBundle:Project')->find($idproject);
+			
 			
 			$article->setProject($project);
 			$article->setUser($user);
@@ -54,8 +61,18 @@ class ArticleController extends Controller
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 		$user = $em->getRepository('PSProjectBundle:Participant')->find($this->getUser()->getId());
 		
-		$listInformation = $em->getRepository('PSProjectBundle:Information')->findBy(array('project' => $project, 'statut' => 'Validate'));
+		$listInformation = $em->getRepository('PSProjectBundle:Information')->findBy(array('keyProject' => $keyproject, 'statut' => 'Validate'));
 		$article = $em->getRepository('PSProjectBundle:Article')->find($idarticle);
+		
+		
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+
+		if($article->getUser()->getId() !== $this->getUser()->getId() ){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
+		
+		
 		
 		$form = $this->get('form.factory')->create(ArticleEditType::class, $article);
 		
@@ -83,6 +100,13 @@ class ArticleController extends Controller
 
 		$article = $em->getRepository('PSProjectBundle:Article')->find($idarticle);
 		
+		
+		//permission
+		$participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
+
+		if($article->getUser()->getId() !== $this->getUser()->getId() ){
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
 
 		
 		if (null === $article) {
