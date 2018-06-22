@@ -335,8 +335,9 @@
     color: white;
     margin: 10px;
     font-family: sans-serif;
+    cursor: pointer;
 }
-.delete-project:hover{
+.delete-project:hover, .cancel-btn:hover{
     color: white;
 }
 .reload{
@@ -351,4 +352,22 @@
 }
 .reload:hover span{
     color:#030642;
+}
+.cancel-btn{
+    background-color: #030642;
+    color: white;
+    margin: 10px;
+    font-family: sans-serif;
+}
+.message{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.message p{
+    width: 100%;
+    font-family: trebuchet MS, sans-serif;
+    color: #c10000;
+    font-size: 1.2rem;
+    text-align: center;
 }
