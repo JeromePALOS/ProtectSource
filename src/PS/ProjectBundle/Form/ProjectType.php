@@ -26,6 +26,7 @@ class ProjectType extends AbstractType
 				array('required' => false, 
 				'label' => 'Participant can view' //1 = yes 0 = no
 			))
+            ->add('files', 				FilesType::class, array('required' => false, 'label' => false))
 			->add('instruction', 			TextareaType::class)
 			->add('Create',     			SubmitType::class)
 		;

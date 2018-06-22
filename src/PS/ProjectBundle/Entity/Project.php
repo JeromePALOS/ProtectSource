@@ -3,12 +3,15 @@
 namespace PS\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Project
  *
  * @ORM\Table(name="project")
  * @ORM\Entity(repositoryClass="PS\ProjectBundle\Repository\ProjectRepository")
+  * @ORM\HasLifecycleCallbacks()
  */
 class Project
 {
@@ -27,7 +30,11 @@ class Project
 	 */
 	private $user;
 	
-	
+    /**
+	* @ORM\OneToOne(targetEntity="PS\ProjectBundle\Entity\Files", cascade={"persist", "remove"})
+	* @Assert\Valid()
+	*/
+	private $files;
 
     /**
      * @var string
@@ -234,5 +241,29 @@ class Project
     public function getVisibility()
     {
         return $this->visibility;
+    }
+
+    /**
+     * Set files
+     *
+     * @param \PS\ProjectBundle\Entity\Files $files
+     *
+     * @return Project
+     */
+    public function setFiles(\PS\ProjectBundle\Entity\Files $files = null)
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    /**
+     * Get files
+     *
+     * @return \PS\ProjectBundle\Entity\Files
+     */
+    public function getFiles()
+    {
+        return $this->files;
     }
 }
