@@ -6,6 +6,12 @@ ps_project_view_project_admin:
     path:     /listprojectadmin
     defaults: { _controller: PSProjectBundle:Project:viewListProjectAdmin }  
     
+ps_project_edit_participant_admin:  
+    path:     /{keyproject}/{idproject}/{idparticipant}/editprojectadmin
+    defaults: { _controller: PSProjectBundle:Participant:editParticipantAdmin } 
+    
+    
+    
 ps_project_contact:  
     path:     /contact
     defaults: { _controller: PSProjectBundle:Contact:viewContact }   

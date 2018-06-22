@@ -28,7 +28,7 @@ class Participant
 	private $user;
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="PS\ProjectBundle\Entity\Project")
+	 * @ORM\ManyToOne(targetEntity="PS\ProjectBundle\Entity\Project", cascade={"persist"}, inversedBy="participants")
 	 * @ORM\JoinColumn(nullable=false, onDelete="CASCADE"))
 	 */
 	private $project;

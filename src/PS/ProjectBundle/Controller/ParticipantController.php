@@ -186,5 +186,41 @@ class ParticipantController extends Controller
 		));
 	
 	}
+    
+  public function editParticipantAdminAction($idproject, $keyproject, Request $request, $idparticipant){
+        if ($this->getUser()->hasRole('ROLE_USER')){
+              $em = $this->getDoctrine()->getManager();
+
+		      $project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+                $participant = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('id' => $idparticipant, 'project' => $project));
+
+            
+            
+            		
+            $form = $this->get('form.factory')->create(ParticipantEditType::class, $participant);
+            if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {	
+
+
+                $em->flush();
+                $request->getSession()->getFlashBag()->add('notice', 'Participant update.');
+
+                return $this->redirectToRoute('ps_project_view_project_admin');
+            }
+
+            
+            
+            
+
+            return $this->render('@PSProject\Participant\editParticipant.html.twig', array(
+                'project' => $project,
+                'participant' => $participant,
+                'form'   	=> $form->createView(),
+            ));
+            
+        }else{
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
+
+	}
 	
 }
