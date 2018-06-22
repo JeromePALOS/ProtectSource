@@ -31,7 +31,69 @@ class Participant
 	 * @ORM\ManyToOne(targetEntity="PS\ProjectBundle\Entity\Project")
 	 * @ORM\JoinColumn(nullable=false, onDelete="CASCADE"))
 	 */
-	private $porject;
+	private $project;
+	
+    
+    //viewProject
+	/**
+     * @ORM\Column(name="permissionProject", type="boolean")
+     */
+    private $permissionProjectView; 
+    
+    //permission parametre project
+	/**
+     * @ORM\Column(name="permissionProjectParameter", type="boolean")
+     */
+    private $permissionProjectParameter;
+	
+    //add participant
+	/**
+     * @ORM\Column(name="permissionParticipantAdd", type="boolean")
+     */
+    private $permissionParticipantAdd;
+    
+    //delete participant
+    /**
+     * @ORM\Column(name="permissionParticipantDelete", type="boolean")
+     */
+    private $permissionParticipantDelete;
+    
+    //change permission 
+    /**
+     * @ORM\Column(name="permissionParticipantPermission", type="boolean")
+     */
+    private $permissionParticipantPermission;
+    
+    //create, edit, delete
+	/**
+     * @ORM\Column(name="permissionArticle", type="boolean")
+     */
+    private $permissionArticle;
+	
+    //
+	/**
+     * @ORM\Column(name="permissionInformationAdd", type="boolean")
+     */
+    private $permissionInformationAdd;
+    
+    //refuse information
+    /**
+     * @ORM\Column(name="permissionInformationDelete", type="boolean")
+     */
+    private $permissionInformationDelete;
+    
+   public function __construct(){
+		$this->setPermissionArticle(1);
+		$this->setPermissionInformationAdd(1);
+		$this->setPermissionInformationDelete(1);
+		$this->setPermissionProjectView(1);
+		$this->setPermissionProjectParrameter(0);
+		$this->setPermissionParticipantAdd(0);
+        $this->setPermissionParticipantDelete(0);
+        $this->setPermissionParticipantPermission(0);
+	}
+	
+	
 	
     /**
      * Get id
@@ -42,5 +104,148 @@ class Participant
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \PS\UserBundle\Entity\User $user
+     *
+     * @return Participant
+     */
+    public function setUser(\PS\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \PS\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set project
+     *
+     * @param \PS\ProjectBundle\Entity\Project $project
+     *
+     * @return Participant
+     */
+    public function setProject(\PS\ProjectBundle\Entity\Project $project)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return \PS\ProjectBundle\Entity\Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Set permissionProject
+     *
+     * @param boolean $permissionProject
+     *
+     * @return Participant
+     */
+    public function setPermissionProject($permissionProject)
+    {
+        $this->permissionProject = $permissionProject;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionProject
+     *
+     * @return boolean
+     */
+    public function getPermissionProject()
+    {
+        return $this->permissionProject;
+    }
+
+    /**
+     * Set permissionParticipant
+     *
+     * @param boolean $permissionParticipant
+     *
+     * @return Participant
+     */
+    public function setPermissionParticipant($permissionParticipant)
+    {
+        $this->permissionParticipant = $permissionParticipant;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionParticipant
+     *
+     * @return boolean
+     */
+    public function getPermissionParticipant()
+    {
+        return $this->permissionParticipant;
+    }
+
+    /**
+     * Set permissionArticle
+     *
+     * @param boolean $permissionArticle
+     *
+     * @return Participant
+     */
+    public function setPermissionArticle($permissionArticle)
+    {
+        $this->permissionArticle = $permissionArticle;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionArticle
+     *
+     * @return boolean
+     */
+    public function getPermissionArticle()
+    {
+        return $this->permissionArticle;
+    }
+
+    /**
+     * Set permissionInformation
+     *
+     * @param boolean $permissionInformation
+     *
+     * @return Participant
+     */
+    public function setPermissionInformation($permissionInformation)
+    {
+        $this->permissionInformation = $permissionInformation;
+
+        return $this;
+    }
+
+    /**
+     * Get permissionInformation
+     *
+     * @return boolean
+     */
+    public function getPermissionInformation()
+    {
+        return $this->permissionInformation;
+    }
+}

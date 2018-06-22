@@ -3,12 +3,15 @@
 namespace PS\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
  *
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="PS\ProjectBundle\Repository\ArticleRepository")
+  * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
@@ -20,6 +23,12 @@ class Article
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+   /**
+	* @ORM\OneToOne(targetEntity="PS\ProjectBundle\Entity\Files", cascade={"persist", "remove"})
+	* @Assert\Valid()
+	*/
+	private $files;
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="PS\UserBundle\Entity\User")
@@ -152,5 +161,29 @@ class Article
     public function getProject()
     {
         return $this->project;
+    }
+
+    /**
+     * Set files
+     *
+     * @param \PS\ProjectBundle\Entity\Files $files
+     *
+     * @return Article
+     */
+    public function setFiles(\PS\ProjectBundle\Entity\Files $files = null)
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    /**
+     * Get files
+     *
+     * @return \PS\ProjectBundle\Entity\Files
+     */
+    public function getFiles()
+    {
+        return $this->files;
     }
 }

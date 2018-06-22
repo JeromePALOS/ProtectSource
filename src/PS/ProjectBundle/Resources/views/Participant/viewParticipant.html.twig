@@ -1,0 +1,53 @@
+{% extends "@PSProject\\layout.html.twig" %}
+
+{% block title %}
+	Project
+{% endblock %}
+
+{% block content %}
+
+        <table class="table table-hover" id="table-participant">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for participant in listParticipant %}
+					<tr>
+						<th scope="row">{{ loop.index }}</th>
+						<td>{{ participant.user }}</td>
+						<td>
+
+						</td>
+						
+					</tr>
+				{% endfor %}			
+
+			</tbody>
+		</table>
+
+
+
+
+
+
+{{ dump(listParticipant) }}
+{% endblock %}
+
+
+
+{% block javascripts %}
+	{{ parent() }}
+	
+
+	
+	
+	
+	
+	
+	
+	
+{% endblock %}

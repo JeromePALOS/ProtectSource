@@ -1,0 +1,99 @@
+{% extends "@PSProject\\layout.html.twig" %}
+
+{% block title %}
+	Project
+{% endblock %}
+
+
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/psproject/css/modal.css') }}" type="text/css" media="all"/>
+	
+{% endblock %}
+
+{% block content %}
+
+
+
+        <table class="table table-hover" id="table-participant">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Owner</th>
+                    <th scope="col">Creation Date</th>
+					<th scope="col">Instruction</th>
+                    <th scope="col">Key Project</th>
+                    <th scope="col">Participants</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for project in listProject %}
+					<tr>
+						<th scope="row">{{ loop.index }}</th>
+						<td>{{ project.user.username }}</td>
+						<td>{{ project.dateCreation|date('d/m/Y H:i:s e') }}</td>
+                        <td><a class="modal-active" data-text="{{ project.instruction }}" />instruction</a></td>
+                        <td>{{ project.keyProject }}</td>
+                        <td>
+                            {% for par in project.participants %}
+                            <a href='{{path("ps_project_edit_participant_admin",{"keyproject":project.keyproject,"idproject":project.id, 'idparticipant': par.id })}}'>{{ par.user.username }}</a>
+
+						  {% endfor %}
+                        </td>
+					</tr>
+
+				{% endfor %}			
+			</tbody>
+		</table>
+
+
+
+
+                    <div id="BlockUIConfirm" class="BlockUIConfirm">
+                        <div class="blockui-mask"></div>
+
+                            <div class="RowDialogBody">
+                                <div class="confirm-header">
+                                    Instruction
+                                </div>
+                                <div class="confirm-body">
+                                     <p id="text-instruction"></p>
+                                </div>
+                                <div class="confirm-btn-panel pull-right form-inline">
+                                   
+                                    <input type="button" class="row-dialog-btn btn btn-naked" value="No, Cancel" id='modal-hide' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/psproject/css/modal.js') }}"></script>
+
+	
+	
+	
+	
+	
+	
+	
+{% endblock %}
