@@ -1,5 +1,27 @@
 {# src/PS/ProjectmBundle/Resources/views/Project/formProject.html.twig #}
 
-<div class="well container">
-  {{ form(form) }}
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 form container">
+  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+  {{ form_errors(form) }}  
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      {{ form_errors(form.title) }}
+      {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="col-sm-12 wysiwyg">
+      {{ form_errors(form.text) }}
+      {{ form_widget(form.text, {'attr': {'class': ''}}) }}
+    </div>
+    <div class="col-sm-12 submit-btn">
+      {{ form_widget(form.saveArticle, {'attr': {'class': 'btn btn-primary'}}) }}
+      <a class="btn delete-project" href="{{path("ps_project_delete_article",{"keyproject":project.keyproject,"idproject":project.id,"idarticle":article.id})}}">Delete</a>
+    </div>
+  </div> 
+
+  {{ form_rest(form) }}
+
+  {{ form_end(form) }}
 </div>

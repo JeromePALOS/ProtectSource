@@ -4,10 +4,46 @@
 	Project
 {% endblock %}
 
-{% block body %}
-
-	ahahhaerhgrazejkbgfsdmbgmbsdjkgbmkjl
-	{{ dump(listProject)}}
+{% block content %}
+	<container class="container-project container-fluid row">
+		<div class="project-article col-lg-10 offset-lg-1">
+			<h2><span class="lettrine">M</span>y Projects</h2>
+			<div class="row article-list">
+				{% for project in listProject %}
+				<a class="col-xs-12 col-sm-6 col-md-4 col-lg-3" href="{{path("ps_project_view_project",{"keyproject":project.keyproject,"idproject":project.id})}}">
+					<div class"col-md-12">
+						<img src="http://placehold.it/400x300&text=Et%20si%20on%20cessait%20de%20fumer%20rien%20qu%E2%80%99en%20stimulant%20le%20cerveau%20?" alt="Article image" class="img-fluid">
+						<div class="article-name">
+							<p>{{ project.name }}</p>
+							<p>{{ listParticipation|length +1 }} <span class="oi oi-person"></span></p>
+						</div>
+					</div>
+				</a>
+				{% endfor %}
+				<a class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-article" href="{{path("ps_project_add_project")}}">
+					<div class="col-md-12 align-middle"> <span class="oi oi-plus"></span></div>
+				</a>
+			</div>					
+		</div>
+		<div class="project-article col-lg-10 offset-lg-1">
+			<h2><span class="lettrine">M</span>y Participations</h2>
+			<div class="row article-list">
+				{% for participation in listParticipation %}
+				{% if participation.project.visibility == 1 %}
+				<a class="col-xs-12 col-sm-6 col-md-4 col-lg-3" href="{{path("ps_project_view_project",{"keyproject":participation.project.keyproject,"idproject":participation.project.id})}}">
+					<div class"col-md-12">
+						<img src="http://placehold.it/400x300&text=Et%20si%20on%20cessait%20de%20fumer%20rien%20qu%E2%80%99en%20stimulant%20le%20cerveau%20?" alt="Article image" class="img-fluid">
+						<div class="article-name">
+							<p>{{ participation.project.name }}</p>							
+							<p>{{ listParticipation|length +1 }} <span class="oi oi-person"></span></p>
+						</div>
+					</div>
+				</a>
+				{% endif %}
+				{% endfor %}
+			</div>					
+		</div>
+	</container>
 
 {% endblock %}
 

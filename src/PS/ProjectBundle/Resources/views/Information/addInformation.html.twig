@@ -4,47 +4,39 @@
 	Add Information
 {% endblock %}
 
-{% block body %}
-
-	<h3>Add information</h3>
-	<div class="well">
-		{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-
-			{{ form_errors(form) }}
-
+{% block content %}
+<container class="container-project container-fluid">
+	<div class="project-article col-lg-10 offset-lg-1">
+		<h2><span class="lettrine">S</span>end information</h2>
+		<div class="form container">
+			
+				{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+				{{ form_errors(form) }}
 			<div class="form-group">
-
-				{{ form_label(form.typeInformation, "Information type", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-				{{ form_errors(form.typeInformation) }}
-
-				<div class="col-sm-4">
+				<div class="col-sm-12">
+					{{ form_label(form.typeInformation, "Information type", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+					{{ form_errors(form.typeInformation) }}
 					{{ form_widget(form.typeInformation, {'attr': {'class': 'form-control'}}) }}
 				</div>
-			</div>
-
-			
-			<div class="form-group" id="text">
-				{{ form_label(form.text, "", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-				{{ form_errors(form.text) }}
-				<div class="col-sm-4">
+				<div class="col-sm-12" id="text">
+					{{ form_label(form.text, "", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+					{{ form_errors(form.text) }}
 					{{ form_widget(form.text, {'attr': {'class': 'form-control'}}) }}
 				</div>
-			</div>
-
-			<div class="form-group" id="files">
-				{{ form_label(form.files, "", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-				{{ form_errors(form.files) }}
-				<div class="col-sm-4">
-					{{ form_widget(form.files, {'attr': {'class': 'form-control'}}) }}
+				<div class="col-sm-12"id="files">
+					{{ form_label(form.files, "", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+					{{ form_errors(form.files) }}
+					{{ form_widget(form.files, {'attr': {'class': 'form-control'}}) }}				
+				</div>
+				<div class="col-sm-12 submit-btn">
+     			 {{ form_widget(form.Send, {'attr': {'class': 'btn btn-primary'}}) }}
 				</div>
 			</div>
-			
-
-			{{ form_widget(form.Send, {'attr': {'class': 'btn'}}) }}
-
-
-			{{ form_rest(form) }}
-		{{ form_end(form) }}
+		</div>
+	</div>
+</container>
+{{ form_rest(form) }}
+{{ form_end(form) }}
 
 {% endblock %}
 

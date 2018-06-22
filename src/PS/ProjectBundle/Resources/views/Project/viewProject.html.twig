@@ -4,12 +4,12 @@
 	Project
 {% endblock %}
 
-{% block body %}{#change to content#}
+{% block content %}
 <div class="container-fluid">
 	<div class="row">
 		<aside class="col-xs-12 col-sm-12 col-md-3 col-lg-2 aside-participants">
 			<h3>Participants</h3>
-			<ul>
+			<ul>			
 			{% for participant in listParticipant %}
 				<li>{{ participant.user.username }}
 				<a><span class="oi oi-x"></span></a>
@@ -39,8 +39,7 @@
 					<a class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-article" href="{{path("ps_project_add_article",{"keyproject":project.keyproject,"idproject":project.id})}}">
 						<div class="col-md-12 align-middle"> <span class="oi oi-plus"></span></div>
 					</a>
-				</div>
-					
+				</div>				
 			</div>
 			<div class="project-informations row">
 
@@ -55,7 +54,6 @@
 						</a>
 					</div>
 					{% for information in listInformationSubmit %}
-
 					<div class="informations">
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAY1BMVEUAAAD/wMvQnaYcFRacdXyGZWvgqbL0uMI0JynSnqeofoYSDg4gGBnssrz6vMfcpq8oHiDElJx2WV5sUVZUP0NiSk4KCAiSbnSug4u6jJRGNTg+LzFMOT0uIyWOa3F+X2RcRUnR8c+jAAABc0lEQVQ4jb1S26KcIAwkoNwUEFEEXdH//8qDLGv3bHv61uYpyUwgM4DQ/w5P+u4v8Bo1gI78J3zL8BV6+oGAoQb+M87hjvdLHne23DhLd3NCx/7KE+Azk9KIY/Pq7QlxSmoxKoeQonkqutrqzIaQxVV53yyoPewDSVtnOiyKOFsZVGNNNo2BPWuC4VHvfjLiImh7aNrKUg4Gnom3YIbnFueloQ2lWBWYenQnQJWzlpUBCFc0OA1qeIkhAnTymTBOU9pDdqGTAOrNri4C2BX1FIxlhqCJZr/7bz4fGreS70IIS7jND7b4j5fYrW6WJk/1Mj+qWT/gi35SmkJ7xESp+xw/6bW5HxW7vsO1L1rY+UaYMXW7C4zC9We0HYeZivGFDv068JlNcwSaet4aCM4xt/FHX4zwTMRosZXTUYXvR5A4GquYJoUgedO4ObwvJV0rwxZZ8ZqXy7wI9+dapboQ776JbWC+d4YG/R6e/MrJpw//NL4AJIoTtPA5SQ8AAAAASUVORK5CYII=">						
 						{% if information.typeInformation == "text" %}
@@ -65,12 +63,12 @@
 							{% set video = ['mp4', 'avi', 'flv'] %}
 							{% if information.files.extension in audio %}
 								<audio class="content-info" controls>
-  									<source src="{{ asset(information.files.webPath) }}" type="audio/{{information.files.extension}}">
+  									<source src="{{ asset(information.files.webPath) }}">
 									Your browser does not support the audio element.
 								</audio>
 							{% elseif information.files.extension in video %}
 								<video class="content-info" controls>
-  									<source src="{{ asset(information.files.webPath) }}" type="video/{{information.files.extension}}">
+  									<source src="{{ asset(information.files.webPath) }}">
   									Your browser does not support HTML5 video.
 								</video>
 							{% else %}
@@ -88,8 +86,25 @@
 						{% for information in listInformationAccept %}
 						<div class="informations">
 							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAY1BMVEUAAAD/wMvQnaYcFRacdXyGZWvgqbL0uMI0JynSnqeofoYSDg4gGBnssrz6vMfcpq8oHiDElJx2WV5sUVZUP0NiSk4KCAiSbnSug4u6jJRGNTg+LzFMOT0uIyWOa3F+X2RcRUnR8c+jAAABc0lEQVQ4jb1S26KcIAwkoNwUEFEEXdH//8qDLGv3bHv61uYpyUwgM4DQ/w5P+u4v8Bo1gI78J3zL8BV6+oGAoQb+M87hjvdLHne23DhLd3NCx/7KE+Azk9KIY/Pq7QlxSmoxKoeQonkqutrqzIaQxVV53yyoPewDSVtnOiyKOFsZVGNNNo2BPWuC4VHvfjLiImh7aNrKUg4Gnom3YIbnFueloQ2lWBWYenQnQJWzlpUBCFc0OA1qeIkhAnTymTBOU9pDdqGTAOrNri4C2BX1FIxlhqCJZr/7bz4fGreS70IIS7jND7b4j5fYrW6WJk/1Mj+qWT/gi35SmkJ7xESp+xw/6bW5HxW7vsO1L1rY+UaYMXW7C4zC9We0HYeZivGFDv068JlNcwSaet4aCM4xt/FHX4zwTMRosZXTUYXvR5A4GquYJoUgedO4ObwvJV0rwxZZ8ZqXy7wI9+dapboQ776JbWC+d4YG/R6e/MrJpw//NL4AJIoTtPA5SQ8AAAAASUVORK5CYII=">						
-						
+							{% if information.typeInformation == "text" %}
 							<p class="content-info">{{ information.text }}</p>
+						{% elseif information.typeInformation == "file" %}	
+							{% set audio = ['mp3', 'ogg', 'wav', 'ogx'] %}
+							{% set video = ['mp4', 'avi', 'flv'] %}
+							{% if information.files.extension in audio %}
+								<audio class="content-info" controls>
+  									<source src="{{ asset(information.files.webPath) }}">
+									Your browser does not support the audio element.
+								</audio>
+							{% elseif information.files.extension in video %}
+								<video class="content-info" controls>
+  									<source src="{{ asset(information.files.webPath) }}">
+  									Your browser does not support HTML5 video.
+								</video>
+							{% else %}
+								<a class="download-file content-info" aria-label="download this submit" download href="{{ asset(information.files.webPath) }}" target="_blank"> <span class="download oi oi-data-transfer-download"></span>Download : {{ information.files.name }} </span></a>
+							{% endif %}
+						{% endif %}
 							<a class="refuse" href="{{path("ps_project_statut_information",{"keyproject":project.keyproject,"idproject":project.id,"idinformation":information.id,"statut":'Refuse'})}}"><span class="oi oi-x"></span></a>
 						</div>
 						{% endfor %}
@@ -99,7 +114,6 @@
 		</container>
 	</div>
 </div>
-
 
 
 {% endblock %}
