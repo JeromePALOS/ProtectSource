@@ -23,6 +23,7 @@ class ArticleType extends AbstractType
         $builder
 			->add('title',     						TextType::class, array('required' => false))
 			->add('text',     						TextareaType::class, array('required' => false))
+            ->add('files', 				FilesType::class, array('required' => false, 'label' => false))
 			->add('Save the article',     			SubmitType::class)
 		;
     }/**
