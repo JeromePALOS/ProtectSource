@@ -208,10 +208,10 @@
     color: #030642;
     transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
-}
+    }
 .informations .download-file:hover{
     text-decoration: none;
-}
+    }
 
 .informations .download-file:hover .download{
     color: white;
@@ -242,11 +242,14 @@
     padding: 20px 0;
 	background-color: #303030;
 	position: relative;
-}
+    }
 .header>div>a{
     display: flex;
     align-items: center;
-}
+    }
+.header>div>a:hover{
+    text-decoration: none;
+    }
 
 .footer{
     width: 100%;
@@ -255,28 +258,28 @@
 	text-align: left;
 	position: relative;
     padding-bottom: 20px;
-}
+    }
 .footer img{
     width: 50px;
     height: 50px;
     cursor: pointer;
-}
+    }
 .footer .contact{
     display: flex;
     flex-direction: row-reverse;
-}
+    }
 
 .red{
     font-weight: bold;
     color: #c00000;
     font-family: 'Trebuchet MS','sans-serif';
-}
+    }
 
 .white{
     color: #bfbfbf;
     font-size: 40px;
     font-family: 'Garamont';
-}
+    }
 
 .dot {
   height: 50px;
@@ -284,28 +287,28 @@
   background-color: #ffffff;
   border-radius: 50%;
   display: inline-block;
-}
+    }
 
 .vl {
     border-left: 2px solid grey;
     margin-right: 6px;
     margin-left: 4px;
-}
+    }
 
 .link{
     text-decoration: none !important;
     color: white !important;    
-}
+    }  
 
 .link:hover{
     text-decoration: none !important;
     color: white !important;
-}
+    }
 
 .logo-hover{
     transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
-}
+    }
 
 .logo-hover:hover{
     opacity: 0.8;
@@ -319,55 +322,57 @@
     cursor: pointer;
     border: none;
     margin: 10px;
-}
+    }
 .submit-btn button:hover{    
     background-color: #030642;    
-}
+    }
 .form label{
     font-family: Trebuchet MS;    
-}
-
+    }
 .form-group>div {
-    margin-bottom: 10px;
-}
+    margin-bottom: 15px;
+    }
 .delete-project{
     background-color: #c10000;
     color: white;
     margin: 10px;
     font-family: sans-serif;
     cursor: pointer;
-}
+    }
 .delete-project:hover, .cancel-btn:hover{
     color: white;
-}
+    }
 .reload{
     background-color: #030642;
-}
+    }
 .reload span{
     color:white;
-}
+    }
 .reload:hover{
     background-color: white;
     border: 1px solid #030642;
-}
+    }
 .reload:hover span{
     color:#030642;
-}
+    }
 .cancel-btn{
     background-color: #030642;
     color: white;
     margin: 10px;
     font-family: sans-serif;
-}
+    }
 .message{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-}
+    }
 .message p{
     width: 100%;
     font-family: trebuchet MS, sans-serif;
     color: #c10000;
     font-size: 1.2rem;
     text-align: center;
+    }
+.my-article{
+    padding-left: 15px;
 }

@@ -23,7 +23,7 @@ class ArticleType extends AbstractType
         $builder
 			->add('title',     						TextType::class, array('required' => false))
 			->add('text',     						TextareaType::class, array('required' => false))
-			->add('Save the article',     			SubmitType::class)
+			->add('saveArticle',     			SubmitType::class)
 		;
     }/**
      * {@inheritdoc}
