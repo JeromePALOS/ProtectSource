@@ -23,6 +23,11 @@ class Project
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+	* @ORM\OneToMany(targetEntity="PS\ProjectBundle\Entity\Participant", mappedBy="project")
+	*/
+	private $participants;
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="PS\UserBundle\Entity\User")
@@ -72,7 +77,7 @@ class Project
 	
 	public function __construct(){
 		// Par défaut, la date du project est la date d'aujourd'hui
-		$this->creationDate = new \Datetime();
+		$this->dateCreation = new \Datetime();
 		$this->keyProject = $this->random(10);
 	}
 	
@@ -265,5 +270,39 @@ class Project
     public function getFiles()
     {
         return $this->files;
+    }
+
+    /**
+     * Add participant
+     *
+     * @param \PS\ProjectBundle\Entity\Participant $participant
+     *
+     * @return Project
+     */
+    public function addParticipant(\PS\ProjectBundle\Entity\Participant $participant)
+    {
+        $this->participants[] = $participant;
+
+        return $this;
+    }
+
+    /**
+     * Remove participant
+     *
+     * @param \PS\ProjectBundle\Entity\Participant $participant
+     */
+    public function removeParticipant(\PS\ProjectBundle\Entity\Participant $participant)
+    {
+        $this->participants->removeElement($participant);
+    }
+
+    /**
+     * Get participants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
     }
 }

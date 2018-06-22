@@ -10,4 +10,25 @@ namespace PS\ProjectBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function getProjectWithParticipant(){
+        $qb = $this->getEntityManager()->createQueryBuilder()
+
+		
+		    ->from('PSProjectBundle:Project', 'pro')
+			->addSelect('pro')
+			
+			->leftJoin('pro.participants', 'par')
+			 ->addSelect('par')
+
+
+		;
+		
+		return $qb
+		  ->getQuery()
+		  ->getOneOrNullResult();
+		;
+	}
+    
+    
 }

@@ -1,7 +1,7 @@
 {% extends "@PSProject\\layout.html.twig" %}
 
 {% block title %}
-	Project
+	User
 {% endblock %}
 
 {% block content %}
@@ -11,14 +11,20 @@
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">Name</th>
-					<th scope="col">Action</th>
+					<th scope="col">Roles</th>
+                    <th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for participant in listParticipant %}
+				{% for user in listUser %}
 					<tr>
 						<th scope="row">{{ loop.index }}</th>
-						<td>{{ participant.user }}</td>
+						<td>{{ user.username }}</td>
+						<td>
+                            {% for role in user.roles %}
+                                {{ role }}
+                            {% endfor %}
+                        </td>
 						<td>
 
 						</td>
@@ -34,7 +40,7 @@
 
 
 
-{{ dump(listParticipant) }}
+
 {% endblock %}
 
 

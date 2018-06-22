@@ -2,6 +2,10 @@ ps_user_homepage:
     path:     /
     defaults: { _controller: PSUserBundle:Default:index }
     
+fos_user_list_user:
+    path:     /listuser
+    defaults: { _controller: PSUserBundle:Default:listUser }  
+    
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

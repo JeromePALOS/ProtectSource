@@ -179,7 +179,30 @@ class ProjectController extends Controller
 		));
 	}
 
-	
+    
+    public function viewListProjectAdminAction(){
+        if ($this->getUser()->hasRole('ROLE_USER')){
+            $em = $this->getDoctrine()->getManager();
+
+
+
+            $listProject = $em->getRepository('PSProjectBundle:Project')->findAll();
+
+
+
+            return $this->render('@PSProject\Project\viewListAdminProject.html.twig', array(
+                'listProject' => $listProject,
+            ));
+        }else{
+			throw new AccessDeniedException('You don\'t have permission.');
+		}
+    }
+			
+		
+		
+			
+		
+
 	
 	
 	
