@@ -4,9 +4,12 @@
 	Edit Participant
 {% endblock %}
 
-{% block body %}
-
-		<h3>Participant : {{ participant.user.username }}</h3>
-		<p> {{ include("@PSProject/Participant/formParticipant.html.twig") }}</p>
+{% block content %}
+<container class="container-project container-fluid">
+	<div class="project-article col-lg-10 offset-lg-1">
+		<h2><span class="lettrine">E</span>dit {{participant.user.username}}'s permissions </h2>
+		<p> {{ include("@PSProject/Participant/formEditParticipant.html.twig") }}</p>
+	</div>
+</container>
 
 {% endblock %}

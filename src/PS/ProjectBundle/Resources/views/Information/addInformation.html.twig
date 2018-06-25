@@ -26,9 +26,10 @@
 				<div class="col-sm-12"id="files">
 					{{ form_label(form.files, "", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
 					{{ form_errors(form.files) }}
-					{{ form_widget(form.files, {'attr': {'class': 'form-control'}}) }}				
+					{{ form_widget(form.files, {'attr': {'class': ''}}) }}				
 				</div>
 				<div class="col-sm-12 submit-btn">
+      			{#<!--<a class="btn return-project" href="{{path("ps_project_view_project",{"keyproject":information.project.keyproject,"idproject":information.project.id,})}}"><span class="oi oi-action-undo"></span> Return</a>-->#}   
      			 {{ form_widget(form.Send, {'attr': {'class': 'btn btn-primary'}}) }}
 				</div>
 			</div>
