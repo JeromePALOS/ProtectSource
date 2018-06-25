@@ -16,7 +16,7 @@ class ArticleController extends Controller
 {
 	
 	
-	public function addArticleAction(Request $request, $idproject){
+	public function addArticleAction(Request $request, $idproject, $keyproject){
 		$em = $this->getDoctrine()->getManager();
 		$article = new Article();
 		

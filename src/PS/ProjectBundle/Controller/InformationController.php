@@ -19,6 +19,8 @@ class InformationController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$information = new Information();
 
+        $project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
+        
 		$form = $this->get('form.factory')->create(InformationType::class, $information);
 		
 		
@@ -52,6 +54,7 @@ class InformationController extends Controller
 
         return $this->render('@PSProject\Information\addInformation.html.twig', array(
 			'form' => $form->createView(),
+            'project' =>$project,
 		));
     }
 	

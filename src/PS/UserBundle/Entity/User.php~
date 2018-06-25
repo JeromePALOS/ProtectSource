@@ -42,34 +42,10 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="parrain", type="string", length=150, nullable=true)
+     * @ORM\Column(name="parrain", type="string", length=150)
      */
     private $parrain;
     
 
 
-
-    /**
-     * Set parrain
-     *
-     * @param string $parrain
-     *
-     * @return User
-     */
-    public function setParrain($parrain)
-    {
-        $this->parrain = $parrain;
-
-        return $this;
-    }
-
-    /**
-     * Get parrain
-     *
-     * @return string
-     */
-    public function getParrain()
-    {
-        return $this->parrain;
-    }
 }

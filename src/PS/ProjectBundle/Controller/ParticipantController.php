@@ -78,6 +78,7 @@ class ParticipantController extends Controller
 
         return $this->render('@PSProject\Participant\addParticipant.html.twig', array(
 			'form' => $form->createView(),
+            'project' => $project
 		));
     }
 	
