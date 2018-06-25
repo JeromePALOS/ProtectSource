@@ -12,9 +12,10 @@
 
      <div class="col-sm-12 col-md-6">
       {{ form_label(form.visibility, "", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+      {{ form_errors(form.files) }}
+      {{ form_widget(form.files, {'attr': {'class': ''}}) }}
       {{ form_errors(form.visibility) }}
-      {{ form_widget(form.visibility, {'attr': {'class': ''}}) }}
-      
+      {{ form_widget(form.visibility, {'attr': {'class': ''}}) }}      
       {{ form_label(form.keyProject, "", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
       {{ form_errors(form.keyProject) }}
       <div class="input-group">
@@ -23,17 +24,17 @@
             <button class="btn reload" type="button"><span class="oi oi-reload"></span></button>
         </div>
       </div>
+      <a class="btn return-project" href="{{path("ps_project_view_project",{"keyproject":project.keyproject,"idproject":project.id,})}}"><span class="oi oi-action-undo"></span> Return</a>
     </div> 
     
     <div class="col-sm-12 col-md-6">
       {{ form_label(form.instruction, "", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
       {{ form_errors(form.instruction) }}
       {{ form_widget(form.instruction, {'attr': {'class': 'form-control'}}) }}
-    </div>
-
-    <div class="col-sm-12 submit-btn">
-       {{ form_widget(form.Save, {'attr': {'class': 'btn btn-primary'}}) }} 
-       <a class="btn delete-project" href="{{path("ps_project_delete_project",{"keyproject":project.keyproject,"idproject":project.id,})}}">Delete</a>
+      <div class="col-sm-12 submit-btn">
+        {{ form_widget(form.Save, {'attr': {'class': 'btn btn-primary'}}) }} 
+        <a class="btn delete-project" href="{{path("ps_project_delete_project",{"keyproject":project.keyproject,"idproject":project.id,})}}">Delete</a> 
+      </div>
     </div>
   </div> 
 

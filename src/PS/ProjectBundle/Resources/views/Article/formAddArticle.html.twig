@@ -14,16 +14,15 @@
       {{ form_errors(form.files) }}
       {{ form_widget(form.files, {'attr': {'class': ''}}) }}
     </div>
+
     <div class="col-sm-12 wysiwyg">
       {{ form_errors(form.text) }}
       {{ form_widget(form.text, {'attr': {'class': ''}}) }}
     </div>
     <div class="col-sm-12 submit-btn">
-      {{ form_widget(form.saveArticle, {'attr': {'class': 'btn btn-primary'}}) }}
-      <a class="btn delete-project" href="{{path("ps_project_delete_article",{"keyproject":project.keyproject,"idproject":project.id,"idarticle":article.id})}}">Delete</a>
-        
+      {{ form_widget(form.saveArticle, {'attr': {'class': 'btn btn-primary'}}) }}  
       <a class="btn return-project" href="{{path("ps_project_view_project",{"keyproject":project.keyproject,"idproject":project.id,})}}"><span class="oi oi-action-undo"></span> Return</a>
-     
+           
     </div>
   </div> 
 

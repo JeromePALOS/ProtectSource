@@ -1,13 +1,8 @@
-{# src/PS/ProjectmBundle/Resources/views/Participant/formParticipant.html.twig #}
+{# src/PS/ProjectmBundle/Resources/views/Participant/formEditParticipant.html.twig #}
 
 <div class="well container">
   {{ form_start(form, {'attr': {'class': 'form-group row'}}) }}
   {{ form_errors(form) }}
-
-    <div class="col-sm-12">
-      {{ form_errors(form.UserX) }}
-      {{ form_widget(form.UserX, {'attr': {'class': 'form-control'}}) }}
-    </div>
 
     <div class="col-sm-6">
       {{ form_errors(form.permissionProjectView) }}
@@ -45,7 +40,8 @@
     
     
    <div class="col-sm-12 submit-btn">
-      {{ form_widget(form.Add, {'attr': {'class': 'btn btn-primary'}}) }}      
+      {{ form_widget(form.Save, {'attr': {'class': 'btn btn-primary'}}) }}
+            
       {#<!-- <a class="btn return-project" href="{{path("ps_project_delete_project",{"keyproject":participant.project.keyproject,"idproject":participant.project.id,})}}"><span class="oi oi-action-undo"></span> Return</a>-->#}
      </div> 
     

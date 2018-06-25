@@ -12,7 +12,11 @@
 				{% for project in listProject %}
 				<a class="col-xs-12 col-sm-6 col-md-4 col-lg-3" href="{{path("ps_project_view_project",{"keyproject":project.keyproject,"idproject":project.id})}}">
 					<div class"col-md-12">
-						<img src="http://placehold.it/400x300&text=Et%20si%20on%20cessait%20de%20fumer%20rien%20qu%E2%80%99en%20stimulant%20le%20cerveau%20?" alt="Article image" class="img-fluid">
+						{% if project.files %}
+							<img src="{{ asset(project.files.webPath) }}" alt="Article image" class="img-fluid">
+						{%else %}
+							<div class="col-md-12 align-middle default-img"><span class="oi oi-book"></span></div>
+						{%endif%}
 						<div class="article-name">
 							<p>{{ project.name }}</p>
 							<p>{{ listParticipation|length +1 }} <span class="oi oi-person"></span></p>
@@ -32,7 +36,11 @@
 				{% if participation.project.visibility == 1 %}
 				<a class="col-xs-12 col-sm-6 col-md-4 col-lg-3" href="{{path("ps_project_view_project",{"keyproject":participation.project.keyproject,"idproject":participation.project.id})}}">
 					<div class"col-md-12">
-						<img src="http://placehold.it/400x300&text=Et%20si%20on%20cessait%20de%20fumer%20rien%20qu%E2%80%99en%20stimulant%20le%20cerveau%20?" alt="Article image" class="img-fluid">
+						{% if participation.project.files %}
+							<img src="{{ asset(participation.project.files.webPath) }}" alt="Article image" class="img-fluid">
+						{%else %}
+							<div class="col-md-12 align-middle default-img"><span class="oi oi-book"></span></div>
+						{%endif%}
 						<div class="article-name">
 							<p>{{ participation.project.name }}</p>							
 							<p>{{ listParticipation|length +1 }} <span class="oi oi-person"></span></p>

@@ -9,13 +9,14 @@
 	<div class="row">
 		<aside class="col-xs-12 col-sm-12 col-md-3 col-lg-2 aside-participants">
 			<h3>Participants</h3>
-			<ul>
-				{%set listParticipant={}%}
-				{% for participant in listParticipant %}
-				<li>{{ participant.user.username }}
-					<a><span class="oi oi-x"></span></a>
+			<ul>			
+			{% for participant in listParticipant %}
+				<li>
+				<p>{{ participant.user.username }}</p>
+				<a href="{{path("ps_project_edit_participant",{"keyproject":project.keyproject,"idproject":project.id,"idparticipant":participant.id})}}"><span class="oi oi-pencil"></span></a>
+				<a href="{{path("ps_project_delete_participant_ajax",{"keyproject":project.keyproject,"idproject":project.id,"idparticipant":participant.id})}}"><span class="oi oi-x"></span></a>			
 				</li>
-				{% endfor %}
+			{% endfor %}
 			</ul>
 			<a href="{{path("ps_project_add_participant",{"keyproject":project.keyproject,"idproject":project.id})}}">Add Participant</a>
 		</aside>

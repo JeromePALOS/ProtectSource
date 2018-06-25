@@ -9,10 +9,12 @@
 
     <div class="col-sm-12">
       {{ form_label(form.name, "", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
       {{ form_errors(form.name) }}
-
       {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="col-sm-12">
+      {{ form_errors(form.files) }}
+      {{ form_widget(form.files, {'attr': {'class': ''}}) }}
     </div>
 
     <div class="col-sm-12">
@@ -28,8 +30,9 @@
     </div>
 
     <div class="col-sm-12 submit-btn">
-      {{ form_widget(form.Create, {'attr': {'class': 'btn btn-primary'}}) }}
-    </div>
+      {{ form_widget(form.Create, {'attr': {'class': 'btn btn-primary'}}) }}      
+      <a class="btn return-project" href="{{path("ps_project_homepage")}}"><span class="oi oi-action-undo"></span> Return</a>
+     </div>
   </div> 
 
   {{ form_rest(form) }}

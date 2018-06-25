@@ -12,23 +12,27 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 aside-info">
 				{% for information in listInformation %}
 				<div class="informations">
-					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAY1BMVEUAAAD/wMvQnaYcFRacdXyGZWvgqbL0uMI0JynSnqeofoYSDg4gGBnssrz6vMfcpq8oHiDElJx2WV5sUVZUP0NiSk4KCAiSbnSug4u6jJRGNTg+LzFMOT0uIyWOa3F+X2RcRUnR8c+jAAABc0lEQVQ4jb1S26KcIAwkoNwUEFEEXdH//8qDLGv3bHv61uYpyUwgM4DQ/w5P+u4v8Bo1gI78J3zL8BV6+oGAoQb+M87hjvdLHne23DhLd3NCx/7KE+Azk9KIY/Pq7QlxSmoxKoeQonkqutrqzIaQxVV53yyoPewDSVtnOiyKOFsZVGNNNo2BPWuC4VHvfjLiImh7aNrKUg4Gnom3YIbnFueloQ2lWBWYenQnQJWzlpUBCFc0OA1qeIkhAnTymTBOU9pDdqGTAOrNri4C2BX1FIxlhqCJZr/7bz4fGreS70IIS7jND7b4j5fYrW6WJk/1Mj+qWT/gi35SmkJ7xESp+xw/6bW5HxW7vsO1L1rY+UaYMXW7C4zC9We0HYeZivGFDv068JlNcwSaet4aCM4xt/FHX4zwTMRosZXTUYXvR5A4GquYJoUgedO4ObwvJV0rwxZZ8ZqXy7wI9+dapboQ776JbWC+d4YG/R6e/MrJpw//NL4AJIoTtPA5SQ8AAAAASUVORK5CYII=">						
 					{% if information.typeInformation == "text" %}
+					<img src="{{ asset('assets/images/text.png') }}">
 						<p class="content-info">{{ information.text }}</p>
 					{% elseif information.typeInformation == "file" %}	
 						{% set audio = ['mp3', 'ogg', 'wav', 'ogx'] %}
 						{% set video = ['mp4', 'avi', 'flv'] %}
 						{% if information.files.extension in audio %}
+						<img src="{{ asset('assets/images/audio.png') }}">
 							<audio class="content-info" controls>
   								<source src="{{ asset(information.files.webPath) }}">
 								Your browser does not support the audio element.
 							</audio>
 						{% elseif information.files.extension in video %}
-							<video class="content-info" controls>
-  								<source src="{{ asset(information.files.webPath) }}">
-  								Your browser does not support HTML5 video.
-							</video>
+							<div class="embed-responsive embed-responsive-16by9">
+								<video class="content-info embed-responsive-item" controls>
+  									<source src="{{ asset(information.files.webPath) }}">
+  									Your browser does not support HTML5 video.
+								</video>
+							</div>
 						{% else %}
+						<img src="{{ asset('assets/images/doc.png') }}">
 						<a class="download-file content-info" aria-label="download this submit" download href="{{ asset(information.files.webPath) }}" target="_blank"> <span class="download oi oi-data-transfer-download"></span>Download : {{ information.files.name }} </span></a>
 						{% endif %}
 					{% endif %}

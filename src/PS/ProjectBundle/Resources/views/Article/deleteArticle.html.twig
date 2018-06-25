@@ -8,18 +8,18 @@
 	Delete Article
 {% endblock %}
 
-{% block body %}
-
-  <h2>Delete this article</h2>
-
-    
-  <form action="{{ path('ps_project_delete_article',{'idproject': article.project.id, 'keyproject': article.project.keyproject, 'idarticle': article.id }) }}" method="post">
-    <a href="{{ path('ps_project_edit_article', {'idproject': article.project.id, 'keyproject': article.project.keyproject, 'idarticle': article.id }) }}" class="btn btn-default">
-      < Back
-    </a>
-    <input type="submit" value="Delete" class="btn-blue" />
-    {# Ceci va générer le champ CSRF #}
-    {{ form_rest(form) }}
-  </form>
-
+{% block content %}
+<container class="container-project container-fluid">
+		<div class="project-article col-lg-10 offset-lg-1">
+			<h2><span class="lettrine">D</span>elete this article</h2>
+      <div class="col-md-4 offset-md-4 message">
+        <p>Are you sure to remove the {{article.title}} article?</p>    
+        <form action="{{ path('ps_project_delete_article',{'idproject': article.project.id, 'keyproject': article.project.keyproject, 'idarticle': article.id }) }}" method="post">   
+          <a class="btn cancel-btn" href="{{ path('ps_project_edit_article', {'idproject': article.project.id, 'keyproject': article.project.keyproject, 'idarticle': article.id }) }}" class="btn btn-default">Cancel</a>
+          <input type="submit" value="Delete" class="btn delete-project" />
+          {{ form_rest(form) }}
+      </form>        
+    </div>
+  </div>
+</container>
 {% endblock %}
