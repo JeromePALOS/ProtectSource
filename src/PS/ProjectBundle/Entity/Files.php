@@ -74,6 +74,9 @@ class Files
 				"video/ogg",
 				"application/ogg",
 				"audio/x-wav",
+				"video/mp4",
+				"video/quicktime",
+				"video/avi",
 				
 				"application/msword",
 				"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
