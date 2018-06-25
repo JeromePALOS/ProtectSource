@@ -20,6 +20,7 @@ class AppKernel extends Kernel
 			new FOS\UserBundle\FOSUserBundle(),
             new PS\UserBundle\PSUserBundle(),
             new PS\ProjectBundle\PSProjectBundle(),
+			new SpecShaper\EncryptBundle\SpecShaperEncryptBundle(),
 
         ];
 
