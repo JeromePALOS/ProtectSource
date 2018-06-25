@@ -81,10 +81,11 @@ class InformationController extends Controller
 		if($information === null){
 			throw new AccessDeniedException('Information unknow');
 		}
-		
-        if(($participation->getPermissionParticipantAdd() == 0 and $statut == "Validate") or ($participation->getPermissionParticipantDelete() == 0 and $statut == "Refuse")){
-            throw new AccessDeniedException('You don\'t have permission.');
-        }
+		if($participation !== null){
+			if(($participation->getPermissionParticipantAdd() == 0 and $statut == "Validate") or ($participation->getPermissionParticipantDelete() == 0 and $statut == "Refuse")){
+				throw new AccessDeniedException('You don\'t have permission.');
+			}
+		}
         
         
 		
