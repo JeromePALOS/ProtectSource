@@ -71,9 +71,14 @@ th>.form-group{
     cursor: pointer;
     padding-right: 5px;
     padding-left: 5px;
+	text-decoration:none;
+	color: #030642;
 }
+
 .modal-active:hover{
     border: 1px solid #c10000; 
+	text-decoration:none; 
+	color: #c10000; 
 }
 
 .confirm-body{

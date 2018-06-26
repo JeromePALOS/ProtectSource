@@ -4,6 +4,13 @@
 	Edit roject
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/psproject/css/modal.css') }}" type="text/css" media="all"/>
+	
+{% endblock %}
+
+
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
@@ -14,7 +21,8 @@
 				<li>
 				<p>{{ participant.user.username }}</p>
 				<a href="{{path("ps_project_edit_participant",{"keyproject":project.keyproject,"idproject":project.id,"idparticipant":participant.id})}}"><span class="oi oi-pencil"></span></a>
-				<a href="{{path("ps_project_delete_participant_ajax",{"keyproject":project.keyproject,"idproject":project.id,"idparticipant":participant.id})}}"><span class="oi oi-x"></span></a>			
+				<a class="modal-a" data-text="Are you sure to remove this participant?" data-title="Remove Participant" data-input="{{path('ps_project_delete_participant_ajax',{'keyproject':project.keyproject,'idproject':project.id, 'idparticipant': participant.id})}}"><span class="oi oi-x"></span></a>			
+
 				</li>
 			{% endfor %}
 			</ul>
@@ -28,4 +36,37 @@
 		</container>
 	</div>
 </div>
+
+
+<div id="BlockUIConfirm" class="BlockUIConfirm">
+	<div class="blockui-mask"></div>
+
+		<div class="RowDialogBody">
+			<div class="confirm-header">
+				<span id="modal-title"></span>
+			</div>
+			<div>
+				 <p id="modal-text"></p>
+			</div>
+			<div class="confirm-btn-panel pull-right form-inline">
+			<input type="button" class="btn return-project" value="No, Cancel" id='modal-hide' />
+			 <a  id="modal-input" class="btn delete-project">Delete</a>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	
+<script src="{{ asset('bundles/psproject/css/modal.js') }}"></script>
+	
+	
+	
+	
+	
 {% endblock %}
