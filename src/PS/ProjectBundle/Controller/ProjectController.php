@@ -19,7 +19,7 @@ class ProjectController extends Controller
 		
 		$listProject = $em->getRepository('PSProjectBundle:Project')->findByUser($this->getUser()->getId());
 		
-		$listParticipation = $em->getRepository('PSProjectBundle:Participant')->findBy(array('user' => $this->getUser()->getId()));
+		$listParticipation = $em->getRepository('PSProjectBundle:Participant')->findBy(array('user' => $this->getUser()));
 
 		//forach listParticipation as p
 		// p.project
