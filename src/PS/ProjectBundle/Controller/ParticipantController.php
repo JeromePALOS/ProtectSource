@@ -182,7 +182,7 @@ class ParticipantController extends Controller
 		
 		$form = $this->get('form.factory')->create(ParticipantEditType::class, $participant);
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {	
-			
+			$em->persist($participant);
 			
 			$em->flush();
 			$request->getSession()->getFlashBag()->add('notice', 'Participant update.');

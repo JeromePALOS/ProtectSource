@@ -427,7 +427,7 @@
 
 .fadeOutUp {
   -webkit-animation-name: fadeOutUp;
-    animation-delay: 2s;
+    animation-delay: 1s;
   animation-name: fadeOutUp;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -435,7 +435,7 @@
   animation-fill-mode: both;
 
   }
-  @-webkit-keyframes fadeOutUp {
+@-webkit-keyframes fadeOutUp {
   0% {
   opacity: 0.99;
   }
@@ -443,9 +443,11 @@
   opacity: 0;
   -webkit-transform: translate3d(0, -100%, 0);
   transform: translate3d(0, -100%, 0);
+    display:none;
+	z-index: -1;
   }
-  }
-  @keyframes fadeOutUp {
+}
+@keyframes fadeOutUp {
   0% {
   opacity: 1;
   }
@@ -453,8 +455,10 @@
   opacity: 0;
   -webkit-transform: translate3d(0, -100%, 0);
   transform: translate3d(0, -100%, 0);
+  display:none;
+  z-index: -1;
   }
-  } 
+} 
   
   
   

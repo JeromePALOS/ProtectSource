@@ -8,6 +8,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping\AttributeOverrides;
 use Doctrine\ORM\Mapping\AttributeOverride;
 
+use Jagilpe\EncryptionBundle\Entity\PKEncryptionEnabledUserInterface;
+use Jagilpe\EncryptionBundle\Entity\Traits\EncryptionEnabledUserTrait;
+
+
+
 /**
  * User
  *
@@ -16,8 +21,11 @@ use Doctrine\ORM\Mapping\AttributeOverride;
  * @ORM\HasLifecycleCallbacks()
 
  */
-class User extends BaseUser
+class User extends BaseUser implements PKEncryptionEnabledUserInterface
 {
+	use EncryptionEnabledUserTrait;
+
+	
     /**
      * @var int
      *

@@ -81,5 +81,16 @@ fos_user:
     from_email :
         address: 'toto@upmc.fr'
         sender_name: 'toto FOSUSERBundle'
-
-
+        
+jagilpe_encryption:
+    enabled: true
+    master_key:
+        cert_file: master-key.pem
+        passphrase: 123123
+    settings:
+        per_user_encryption_enabled: true
+        default_mode: PER_USER_SHAREABLE
+        user_classes:
+            - "PS\\UserBundle\\Entity\\User"
+        security_check_routes:
+            - fos_user_security_check

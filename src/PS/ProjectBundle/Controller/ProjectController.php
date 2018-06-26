@@ -44,6 +44,8 @@ class ProjectController extends Controller
 		
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 			
+
+			
 			$user = $em->getRepository('PSUserBundle:User')->findOneById($this->getUser()->getId());
 			$project->setUser($user);
 			
@@ -124,11 +126,12 @@ class ProjectController extends Controller
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 			
 			$data = $form->getData();
-
 			foreach($listInformation as $info){
 				$info->setKeyProject($data->getKeyProject());
 		
 			}
+			
+			$em->persist($project);
 			
 			
 			

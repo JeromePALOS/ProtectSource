@@ -9,7 +9,9 @@
 	<div class="project-article col-lg-10 offset-lg-1">
 		<h2><span class="lettrine">C</span>reate an article</h2>
 		<div class="row my-article">
+		{% if listInformation|length > 0 %}
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 aside-info">
+			
 				{% for information in listInformation %}
 				<div class="informations">
 					{% if information.typeInformation == "text" %}					
@@ -37,9 +39,14 @@
 						<a class="download-file content-info" aria-label="download this submit" download href="{{ asset(information.files.webPath) }}" target="_blank"> <span class="download oi oi-data-transfer-download"></span>Download : {{ information.files.name }} </span></a>
 						{% endif %}
 					{% endif %}
+
+					
+					
 				</div>
 				{% endfor %}
-			</div>			
+			
+			</div>	
+			{% endif %}
 			<p> {{ include("@PSProject/Article/formAddArticle.html.twig") }}</p>
 		</div>		
 	</div>
