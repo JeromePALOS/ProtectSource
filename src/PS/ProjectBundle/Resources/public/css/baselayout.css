@@ -3,6 +3,21 @@
  src: url("https://fonts.googleapis.com/css?family=EB+Garamond"); 
     }
 
+.alert-block{
+	z-index: 2; 
+	opacity: .99 !important;
+	position:absolute;
+	width: 100%;
+	background-color: #efefef;
+	border-radius: 1px;
+
+	-moz-box-shadow: 4px 4px 12px #aaa; 
+    -webkit-box-shadow: 4px 4px 12px #aaa; 
+    box-shadow: 4px 4px 12px #555;
+	
+}
+
+
 .aside-participants {
     background-color: #030642;
     color: white;
