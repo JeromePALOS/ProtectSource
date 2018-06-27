@@ -30,6 +30,9 @@ class InformationController extends Controller
 				$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 				$information->setKeyProject($keyproject);
 				
+				
+
+				
 				$em->persist($information);
 				$em->flush();
 

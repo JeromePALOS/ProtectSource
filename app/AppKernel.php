@@ -24,6 +24,7 @@ class AppKernel extends Kernel
 			new FOS\CKEditorBundle\FOSCKEditorBundle(),
 			new Jagilpe\EncryptionBundle\JagilpeEncryptionBundle(),
 
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

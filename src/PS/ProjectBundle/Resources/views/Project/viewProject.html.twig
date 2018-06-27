@@ -69,8 +69,9 @@
 							<img src="{{ asset('assets/images/text.png') }}">
 							<p class="content-info">{{ information.text }}</p>
 						{% elseif information.typeInformation == "file" %}	
-							{% set audio = ['mp3', 'ogg', 'wav', 'ogx'] %}
+							{% set audio = ['mp3', 'ogg', 'wav', 'ogx', 'oga'] %}
 							{% set video = ['mp4', 'avi', 'flv'] %}
+
 							{% if information.files.extension in audio %}
 								<img src="{{ asset('assets/images/audio.png') }}">
 								<audio class="content-info" controls>
@@ -87,6 +88,8 @@
 								</div>
 							{% else %}
 							<img src="{{ asset('assets/images/doc.png') }}">
+															
+
 								<a class="download-file content-info" aria-label="download this submit" download href="{{ asset(information.files.webPath) }}" target="_blank"> <span class="download oi oi-data-transfer-download"></span>Download : {{ information.files.name }} </span></a>
 							{% endif %}
 						{% endif %}
@@ -125,6 +128,7 @@
 								{% else %}
 								<img src="{{ asset('assets/images/doc.png') }}">
 									<a class="download-file content-info" aria-label="download this submit" download href="{{ asset(information.files.webPath) }}" target="_blank"> <span class="download oi oi-data-transfer-download"></span>Download : {{ information.files.name }} </span></a>
+									
 								{% endif %}
 							{% endif %}
 
