@@ -6,18 +6,26 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Jagilpe\EncryptionBundle\Annotation\EncryptedEntity;
+use Jagilpe\EncryptionBundle\Entity\SystemEncryptableEntity;
+use Jagilpe\EncryptionBundle\Entity\Traits\SystemEncryptableEntityTrait;
+use Jagilpe\EncryptionBundle\Annotation\EncryptedField;
+
+
+
 /**
  * Article
  *
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="PS\ProjectBundle\Repository\ArticleRepository")
   * @ORM\HasLifecycleCallbacks()
-  
-
- 
+   * @EncryptedEntity(enabled=true, mode="SYSTEM_ENCRYPTION")
  */
-class Article
+class Article implements SystemEncryptableEntity
 {
+	use SystemEncryptableEntityTrait;
+
+	
     /**
      * @var int
      *
@@ -48,6 +56,7 @@ class Article
     /**
      * @var string
      *
+	 * @EncryptedField
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
@@ -56,6 +65,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="text", type="text", nullable=true)
+	 * @EncryptedField
      */
     private $text;
 

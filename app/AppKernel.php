@@ -21,6 +21,9 @@ class AppKernel extends Kernel
             new PS\UserBundle\PSUserBundle(),
             new PS\ProjectBundle\PSProjectBundle(),
 			new SpecShaper\EncryptBundle\SpecShaperEncryptBundle(),
+			new FOS\CKEditorBundle\FOSCKEditorBundle(),
+			new Jagilpe\EncryptionBundle\JagilpeEncryptionBundle(),
+
 
         ];
 

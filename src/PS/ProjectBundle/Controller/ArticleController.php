@@ -80,6 +80,7 @@ class ArticleController extends Controller
 		$form = $this->get('form.factory')->create(ArticleEditType::class, $article);
 		
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+			$em->persist($article);
 		  $em->flush();
 		  $request->getSession()->getFlashBag()->add('notice', 'Article save.');
 

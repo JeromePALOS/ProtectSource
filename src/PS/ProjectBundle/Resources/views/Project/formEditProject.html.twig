@@ -21,7 +21,7 @@
       <div class="input-group">
       {{ form_widget(form.keyProject, {'attr': {'class': '', 'aria-describedby': 'basic-addon2'}}) }}
         <div class="input-group-append">
-            <button class="btn reload" type="button"><span class="oi oi-reload"></span></button>
+            <button class="btn reload" type="button" id='reload-key'><span class="oi oi-reload"></span></button>
         </div>
       </div>
       <a class="btn return-project" href="{{path("ps_project_view_project",{"keyproject":project.keyproject,"idproject":project.id,})}}"><span class="oi oi-action-undo"></span> Return</a>
@@ -33,7 +33,7 @@
       {{ form_widget(form.instruction, {'attr': {'class': 'form-control'}}) }}
       <div class="col-sm-12 submit-btn">
         {{ form_widget(form.Save, {'attr': {'class': 'btn btn-primary'}}) }} 
-        <a class="btn delete-project" href="{{path("ps_project_delete_project",{"keyproject":project.keyproject,"idproject":project.id,})}}">Delete</a> 
+        <a class="btn delete-project" href="{{path('ps_project_delete_project',{'keyproject':project.keyproject,'idproject':project.id,})}}">Delete</a> 
       </div>
     </div>
   </div> 
@@ -42,3 +42,18 @@
 
   {{ form_end(form) }}
 </div>
+
+<script>	
+
+document.getElementById('reload-key').addEventListener("click", 
+function(){
+	var ListeCar = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9");
+	var Chaine ='';
+	for(i = 0; i < 8; i++)
+	{
+		Chaine = Chaine + ListeCar[Math.floor(Math.random()*ListeCar.length)];
+	}
+	document.getElementById('project_edit_keyProject').value = Chaine;
+	}, false);
+
+</script>

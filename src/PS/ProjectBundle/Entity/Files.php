@@ -6,13 +6,19 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
+
 /**
  * @ORM\Table(name="files")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
+
  */
 class Files
 	{
+
+
+	
 		/**
 		 * @ORM\Column(name="id", type="integer")
 		 * @ORM\Id
@@ -127,8 +133,20 @@ class Files
 		private $tempFilename;
 	  
 	  
-	 
-	  
+	     public function fileExists() {
+        if (null === $this->file) {
+			  return;
+			}
+		}
+		
+		
+		public function getAbsolutePath() {
+			$this->getWebPath();
+		}
+	
+
+
+	
 	  
 		/**
 		 * @ORM\PrePersist()
@@ -145,6 +163,7 @@ class Files
 			$this->alt = transliterator_transliterate('Any-Latin; Latin-ASCII; Lower()', $this->file->getClientOriginalName());
 			
 			$this->name = $this->alt;
+	
 		  }
 		  
 		  
@@ -164,12 +183,15 @@ class Files
 			  if (file_exists($oldFile)) {
 				unlink($oldFile);
 			  }
+			  
 			}
 			// On déplace le fichier envoyé dans le répertoire de notre choix
 			$this->file->move(
 			  $this->getUploadRootDir(), // Le répertoire de destination
 			  '['. $this->getId() .']' . $this->name  // Le nom du fichier à créer, ici « id.name »
 			);
+			
+			
 		  }
 		  
 		  
@@ -279,6 +301,7 @@ class Files
 		  public function setFile(UploadedFile $file)
 		  {
 			$this->file = $file;
+			
 			// On vérifie si on avait déjà un fichier pour cette entité
 			if (null !== $this->name) {
 			  // On sauvegarde l'name du fichier pour le supprimer plus tard
@@ -337,6 +360,11 @@ class Files
     {
         return $this->files;
     }
+	
+	
+	public function recup(){
+
+	}
 	
 	
 

@@ -50,17 +50,27 @@ class ParticipantController extends Controller
 		
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 			
-                
+
+				
+				
 			$participant->setProject($project);
 			
 			$data = $form->getData();
-
-			if($user = $em->getRepository('PSUserBundle:User')->findOneByUsername($form->get("UserX")->getData())){
-				$participant->setUser($user);
-                
-
+			$userX = $em->getRepository('PSUserBundle:User')->findOneByUsername($form->get("UserX")->getData());
+			
+			if($em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $userX, 'project' => $project) )){
+				$request->getSession()->getFlashBag()->add('error', 'User already add');
+				return $this->redirectToRoute('ps_project_add_participant', array('keyproject' => $keyproject, 'idproject' => $idproject ));
+				
+            }elseif($userX === $this->getUser()){  
+				$request->getSession()->getFlashBag()->add('error', 'Impossible');
+				return $this->redirectToRoute('ps_project_add_participant', array('keyproject' => $keyproject, 'idproject' => $idproject ));
+				
+			}elseif($userX !== null){
+				$participant->setUser($userX);
+				
 			}else{
-				$request->getSession()->getFlashBag()->add('notice', 'User unknow');
+				$request->getSession()->getFlashBag()->add('error', 'User unknow');
 				return $this->redirectToRoute('ps_project_add_participant', array('keyproject' => $keyproject, 'idproject' => $idproject ));
 			}
 			
@@ -172,7 +182,7 @@ class ParticipantController extends Controller
 		
 		$form = $this->get('form.factory')->create(ParticipantEditType::class, $participant);
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {	
-			
+			$em->persist($participant);
 			
 			$em->flush();
 			$request->getSession()->getFlashBag()->add('notice', 'Participant update.');

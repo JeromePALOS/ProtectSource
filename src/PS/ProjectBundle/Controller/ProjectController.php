@@ -19,7 +19,7 @@ class ProjectController extends Controller
 		
 		$listProject = $em->getRepository('PSProjectBundle:Project')->findByUser($this->getUser()->getId());
 		
-		$listParticipation = $em->getRepository('PSProjectBundle:Participant')->findBy(array('user' => $this->getUser()->getId()));
+		$listParticipation = $em->getRepository('PSProjectBundle:Participant')->findBy(array('user' => $this->getUser()));
 
 		//forach listParticipation as p
 		// p.project
@@ -43,6 +43,8 @@ class ProjectController extends Controller
 		$form = $this->get('form.factory')->create(ProjectType::class, $project);
 		
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+			
+
 			
 			$user = $em->getRepository('PSUserBundle:User')->findOneById($this->getUser()->getId());
 			$project->setUser($user);
@@ -124,11 +126,12 @@ class ProjectController extends Controller
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 			
 			$data = $form->getData();
-
 			foreach($listInformation as $info){
 				$info->setKeyProject($data->getKeyProject());
 		
 			}
+			
+			$em->persist($project);
 			
 			
 			

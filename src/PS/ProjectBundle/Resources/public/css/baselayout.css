@@ -3,6 +3,21 @@
  src: url("https://fonts.googleapis.com/css?family=EB+Garamond"); 
     }
 
+.alert-block{
+	z-index: 2; 
+	opacity: .99 !important;
+	position:absolute;
+	width: 100%;
+	background-color: #efefef;
+	border-radius: 1px;
+
+	-moz-box-shadow: 4px 4px 12px #aaa; 
+    -webkit-box-shadow: 4px 4px 12px #aaa; 
+    box-shadow: 4px 4px 12px #555;
+	
+}
+
+
 .aside-participants {
     background-color: #030642;
     color: white;
@@ -409,6 +424,7 @@
     padding-left: 15px;
 }
 
+
 .login {
     display: flex;
     justify-content: flex-end;
@@ -417,3 +433,42 @@
 .login label{
     margin: 0;
 }
+
+
+.fadeOutUp {
+  -webkit-animation-name: fadeOutUp;
+    animation-delay: 1s;
+  animation-name: fadeOutUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  }
+@-webkit-keyframes fadeOutUp {
+  0% {
+  opacity: 0.99;
+  }
+  100% {
+  opacity: 0;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+    display:none;
+	z-index: -1;
+  }
+}
+@keyframes fadeOutUp {
+  0% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+  display:none;
+  z-index: -1;
+  }
+} 
+  
+  
+
