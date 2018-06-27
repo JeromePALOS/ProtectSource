@@ -17,4 +17,4 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
-    encrypt_key:
+    encrypt_key: yGBXwAEHkaZJybxPTAI+JF0SpcTSoG2dICpUbayMmH0=
