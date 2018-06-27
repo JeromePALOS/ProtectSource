@@ -24,11 +24,14 @@ class ProjectType extends AbstractType
 			->add('name',					TextType::class)
 			->add('visibility', 			CheckboxType::class,
 				array('required' => false, 
-				'label' => 'Participant can view' //1 = yes 0 = no
+				'label' => 'Participant can view',
+				'attr' => array('checked'   => 'checked'),			//1 = yes 0 = no
 			))
 
 			->add('instruction', 			TextareaType::class, array(
-                'attr' => array('rows' => '6')))
+                'attr' => array('rows' => '6'),
+				'label'=> 'Instruction in case of problems'
+			))
 
       ->add('files', 				FilesType::class, array('required' => false, 'label' => false))
 

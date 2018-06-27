@@ -163,7 +163,7 @@ class Files
 			$this->alt = transliterator_transliterate('Any-Latin; Latin-ASCII; Lower()', $this->file->getClientOriginalName());
 			
 			$this->name = $this->alt;
-			$this->setContent(file_get_contents($this->file));
+	
 		  }
 		  
 		  
