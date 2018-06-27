@@ -1,0 +1,44 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "@PSUser\\layout.html.twig" %}
+
+{% block fos_user_content %}
+<container class="container-project container-fluid">
+	<div class="project-article col-lg-10 offset-lg-1">
+		<h2><span class="lettrine">C</span>reate your account</h2>
+        <div class="form container">
+             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+            {{ form_errors(form) }}
+            <div class="form-group row">   
+
+                <div class="col-sm-12">
+                    {{ form_label(form.email, "", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-sm-12">
+                    {{ form_label(form.username, "", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                    {{ form_errors(form.username) }}
+                    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-sm-12">
+                    {{ form_label(form.plainPassword.first, "", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-sm-12">
+                    {{ form_label(form.plainPassword.second, "", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-sm-12 submit-btn">
+                    <input type="submit" class="btn cancel-btn" value="{{ 'registration.submit'|trans }}" /> </div>
+            </div>
+  
+            {{ form_rest(form) }}
+
+            {{ form_end(form) }}
+        </div>
+	</div>
+</container>
+{% endblock fos_user_content %}

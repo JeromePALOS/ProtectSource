@@ -296,8 +296,7 @@
     padding-top: 20px;
 	background-color: #303030;
 	text-align: left;
-	position: relative;
-    padding-bottom: 20px;
+	padding-bottom: 20px;
     }
 .footer img{
     width: 50px;
@@ -366,7 +365,7 @@
 .submit-btn button:hover{    
     background-color: #030642;    
     }
-.form label{
+.form label, form{
     font-family: Trebuchet MS;    
     }
 .form-group>div {
@@ -388,25 +387,26 @@
     margin: 10px 0;
     font-family: sans-serif;
     cursor: pointer;
-    }  
+    }
 .reload{
     background-color: #030642;
+    color: white;
+    cursor: pointer;    
+    border-radius: 0 .25rem .25rem 0 !important;
     }
-.reload span{
-    color:white;
-    }
+
 .reload:hover{
     background-color: white;
     border: 1px solid #030642;
+    color: #030642;
     }
-.reload:hover span{
-    color:#030642;
-    }
+
 .cancel-btn{
     background-color: #030642;
     color: white;
     margin: 10px;
     font-family: sans-serif;
+    cursor: pointer;
     }
 .message{
     display: flex;
@@ -422,6 +422,16 @@
     }
 .my-article{
     padding-left: 15px;
+}
+
+
+.login {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.login label{
+    margin: 0;
 }
 
 
@@ -461,4 +471,4 @@
 } 
   
   
-  
+
