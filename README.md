@@ -5,7 +5,7 @@ FIQUET Gabin
 PALOS Jérôme
 DESHAYES Alexandre
 
-[Github Source Guard Home][https://github.com/JeromePALOS/ProtectSourceHome]
+[Github Source Guard Home](https://github.com/JeromePALOS/ProtectSourceHome)
 
 
 Installation
