@@ -1,30 +1,25 @@
-Symfony Standard Edition
+Source Guard
 ========================
 
-**WARNING**: This distribution does not support Symfony 4. See the
-[Installing & Setting up the Symfony Framework][15] page to find a replacement
-that fits you best.
+FIQUET Gabin
+PALOS Jérôme
+DESHAYES Alexandre
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
-
-What's inside?
+Installation
 --------------
 
-The Symfony Standard Edition is configured with the following defaults:
+php >= 7.1
+activate intl extension and openssl
 
-  * An AppBundle you can use to start coding;
+![alt text](https://drive.google.com/file/d/1Wyav8vsWg2u0iQ_Mpny4kP88rZEH4Ff3/view?usp=sharing)
 
-  * Twig as the only configured template engine;
 
-  * Doctrine ORM/DBAL;
 
-  * Swiftmailer;
 
-  * Annotations enabled for everything.
+
+
+
 
 It comes pre-configured with the following bundles:
 
