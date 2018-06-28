@@ -72,7 +72,14 @@ class ProjectController extends Controller
 		$project = $em->getRepository('PSProjectBundle:Project')->findOneBy(array('keyProject' => $keyproject, 'id' => $idproject));
 		$user = $em->getRepository('PSUserBundle:User')->find($this->getUser()->getId());
 		
-		
+		if (null === $project) {
+			return $this->redirectToRoute('ps_project_homepage');
+		  
+		  
+		}
+		if (null === $user) {
+		  throw new NotFoundHttpException("User unknow");
+		}
 		//permission
 		$participation = $em->getRepository('PSProjectBundle:Participant')->findOneBy(array('user' => $this->getUser()->getId(), 'project' => $project));
 
