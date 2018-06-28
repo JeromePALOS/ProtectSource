@@ -5,7 +5,7 @@ FIQUET Gabin
 PALOS Jérôme
 DESHAYES Alexandre
 
-
+[Github Source Guard Home][https://github.com/JeromePALOS/ProtectSourceHome]
 
 
 Installation
@@ -13,8 +13,6 @@ Installation
 
 php >= 7.1
 activate intl extension and openssl
-
-![ampps extension](https://raw.githubusercontent.com/jeromepalos/ProtectSource/doc/ampps.png)
 
 ```
 git clone https://github.com/jeromepalos/protectsource
