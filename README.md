@@ -1,77 +1,56 @@
-Symfony Standard Edition
+Source Guard
 ========================
 
-**WARNING**: This distribution does not support Symfony 4. See the
-[Installing & Setting up the Symfony Framework][15] page to find a replacement
-that fits you best.
+FIQUET Gabin
+PALOS Jérôme
+DESHAYES Alexandre
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+[Git Hub Source Guard Home][1]
 
-What's inside?
+Installation
 --------------
 
-The Symfony Standard Edition is configured with the following defaults:
+php >= 7.1
+activate intl extension and openssl
 
-  * An AppBundle you can use to start coding;
+![ampps extension](https://raw.githubusercontent.com/jeromepalos/ProtectSource/doc/ampps.png)
 
-  * Twig as the only configured template engine;
+```
+git clone https://github.com/jeromepalos/protectsource
 
-  * Doctrine ORM/DBAL;
+cd protectsource/
+composer install
+php bin/console ckeditor:install
+php bin/console assets:install
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:update --force
+```
 
-  * Swiftmailer;
+```
+cd ../
+git clone https://github.com/jeromepalos/protectsourcehome
+cd protectsourcehome/
+composer install
+php bin/console assets:install
+```
 
-  * Annotations enabled for everything.
 
-It comes pre-configured with the following bundles:
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+database in protectsource/protectsource.sql
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+Account :
+ login : admin
+ password : admin
+ 
+ login : fiquet
+ password : fiquet
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+ login : palos
+ password : palos
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+[1]:  https://github.com/JeromePALOS/ProtectSourceHome/
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.4/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.4/doctrine.html
-[8]:  https://symfony.com/doc/3.4/templating.html
-[9]:  https://symfony.com/doc/3.4/security.html
-[10]: https://symfony.com/doc/3.4/email.html
-[11]: https://symfony.com/doc/3.4/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
-[15]: https://symfony.com/doc/current/setup.html
