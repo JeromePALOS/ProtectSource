@@ -12,7 +12,7 @@ Installation
 php >= 7.1
 activate intl extension and openssl
 
-![ampps extension](https://raw.githubusercontent.com/jeromepalos/ProtectSource/master/doc/ampps.png)
+![ampps extension](https://raw.githubusercontent.com/jeromepalos/ProtectSource/doc/ampps.png)
 
 
 
