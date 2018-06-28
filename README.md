@@ -1,9 +1,9 @@
 Source Guard
 ========================
 
-FIQUET Gabin
-PALOS Jérôme
-DESHAYES Alexandre
+* FIQUET Gabin
+* PALOS Jérôme
+* DESHAYES Alexandre
 
 [Github Source Guard Home](https://github.com/JeromePALOS/ProtectSourceHome)
 
