@@ -17,9 +17,10 @@ activate intl extension and openssl
 ![ampps extension](https://raw.githubusercontent.com/jeromepalos/ProtectSource/doc/ampps.png)
 
 
-> git clone https://github.com/jeromepalos/protectsource
-> cd protectsource/
-> composer install
+git clone https://github.com/jeromepalos/protectsource
+
+cd protectsource/
+composer install
 php bin/console ckeditor:install
 php bin/console assets:install
 php bin/console doctrine:database:create
