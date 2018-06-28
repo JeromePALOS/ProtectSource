@@ -6,7 +6,7 @@ PALOS Jérôme
 DESHAYES Alexandre
 
 
-[Git Hub Source Guard Home][1]
+
 
 Installation
 --------------
@@ -36,11 +36,14 @@ php bin/console assets:install
 ```
 
 
-
+```
 database in protectsource/protectsource.sql
+```
+
 
 
 Account :
+```
  login : admin
  password : admin
  
@@ -49,8 +52,6 @@ Account :
 
  login : palos
  password : palos
+```
 
-
-
-[1]:  https://github.com/JeromePALOS/ProtectSourceHome/
 
