@@ -27,8 +27,7 @@ security:
                 provider:    fos_userbundle
                 login_path:  /login
                 check_path:  /login_check
-                default_target_path: /listproject/
-                always_use_default_target_path: true
+                default_target_path: /
                 remember_me: true          
             anonymous:       false
             logout:
