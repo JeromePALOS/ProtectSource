@@ -39,6 +39,8 @@ database in protectsource/protectsource.sql
 ```
 
 
+**Warning**
+[OpenSSL varaible environnement](https://stackoverflow.com/questions/17272809/openssl-pkey-export-and-cannot-get-key-from-parameter-1#)
 
 Account 
 -------
